@@ -1,0 +1,63 @@
+#!/bin/bash
+###! sbatch directives begin here ###############################                                      
+#SBATCH -J relax-9-PSO_2                                                                                 
+#SBATCH -p seas_compute,shared                                                                              
+#SBATCH --ntasks=64                                                                                 
+#SBATCH --time=3-00:00:00                                                                            
+#SBATCH --mem-per-cpu 6400                                                                           
+#SBATCH --constraint=cascadelake   
+
+#! Number of nodes and tasks per node allocated by SLURM (do not change):                       
+numnodes=$SLURM_JOB_NUM_NODES
+numtasks=$SLURM_NTASKS
+
+ulimit -s unlimited
+
+module load intel/23.0.0-fasrc01 intel-mkl/23.0.0-fasrc01 openmpi/4.1.4-fasrc01
+export LD_LIBRARY_PATH=/n/kaxiras_lab/software/siesta/siesta/Docs/build/lib:$LD_LIBRARY_PATH
+
+export MKLPATH=${MKLROOT}/lib/intel64
+
+#! Full path to application executable:
+application="/n/kaxiras_lab/software/siesta/siesta/build-w90/Src/siesta"
+
+#! Run options for the application:
+options=" < bilayer.fdf > OUT"
+
+#! Work directory (i.e. where the job will run):
+workdir="$SLURM_SUBMIT_DIR"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory
+                             # in which sbatch is run.
+
+#! Are you using OpenMP (NB this is unrelated to OpenMPI)? If so increase this             
+#! safe value to no more than 32:
+export OMP_NUM_THREADS=1
+
+
+#! The following variables define a sensible pinning strategy for Intel MPI tasks
+#! this should be suitable for both pure MPI and hybrid MPI/OpenMP jobs:
+export I_MPI_PIN_DOMAIN=omp:compact # Domains are $OMP_NUM_THREADS cores in size                                              
+export I_MPI_PIN_ORDER=scatter # Adjacent domains have minimal sharing of caches/sockets
+
+#CMD="srun -n $numtasks --mpi=pmix $application $options"
+
+CMD="mpirun -np $numtasks $application $options"
+
+###############################################################
+### You should not have to change anything below this line ####
+###############################################################
+
+cd $workdir
+echo -e "Changed directory to `pwd`.\n"
+
+JOBID=$SLURM_JOB_ID
+
+echo -e "JobID: $JOBID\n======"
+echo "Time: `date`"
+echo "Running on master node: `hostname`"
+echo "Current directory: `pwd`"
+
+echo -e "\nnumtasks=$numtasks, numnodes=$numnodes (OMP_NUM_THREADS=$OMP_NUM_THREADS)"
+
+echo -e "\nExecuting command:\n==================\n$CMD\n"
+
+eval $CMD

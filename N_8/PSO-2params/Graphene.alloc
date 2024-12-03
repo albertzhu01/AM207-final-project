@@ -1,0 +1,29 @@
+  
+
+Allocation summary at 2024/11/30 22:24:10.267 -05:00
+
+Present memory all nodes :           0.000000 MB
+Added peak mem all nodes :           0.000000 MB
+Min peak memory in a node:           0.000000 MB
+Max peak memory in a node:           0.000000 MB
+
+Maximum peak of memory occurred in node:     0
+
+Present memory allocation:           0.000000 MB
+Maximum memory allocation:           0.000000 MB
+Occurred after allocating: 
+In routine:                
+
+Allocation summary at 2024/11/30 22:24:10.270 -05:00
+
+Present memory all nodes :           0.000000 MB
+Added peak mem all nodes :           0.000000 MB
+Min peak memory in a node:           0.000000 MB
+Max peak memory in a node:           0.000000 MB
+
+Maximum peak of memory occurred in node:    58
+
+Present memory allocation:           0.000000 MB
+Maximum memory allocation:           0.000000 MB
+Occurred after allocating: 
+In routine:                

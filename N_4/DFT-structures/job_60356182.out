@@ -1,0 +1,14 @@
+Changed directory to /n/holylabs/LABS/kaxiras_lab/axzhu/projects/AM207-final-project/N_4/DFT-structures.
+
+JobID: 60356182
+======
+Time: Sun Dec  1 14:24:53 EST 2024
+Running on master node: holy7c18504.rc.fas.harvard.edu
+Current directory: /n/holylabs/LABS/kaxiras_lab/axzhu/projects/AM207-final-project/N_4/DFT-structures
+
+numtasks=64, numnodes=13 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -np 64 /n/kaxiras_lab/software/siesta/siesta/build-w90/Src/siesta  < bilayer.fdf > OUT
+

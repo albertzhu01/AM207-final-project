@@ -1,0 +1,1847 @@
+SystemName     Graphene                                                                        
+SystemLabel     Graphene                                                                        
+MPI.Nprocs.SIESTA        64     # default value
+SpinPolarized              F     # default value
+NonCollinearSpin              F     # default value
+SpinOrbit              F     # default value
+#:block? SpinPolarized              F
+#:defined? SpinPolarized              F
+#:block? NonCollinearSpin              F
+#:defined? NonCollinearSpin              F
+#:block? SpinOrbit              F
+#:defined? SpinOrbit              F
+Spin     non-polarized                                                                   
+TimeReversalSymmetry              T     # default value
+DebugObjects.Node         0     # default value
+DebugObjects              F     # default value
+XML.Write              F     # default value
+timer_report_threshold          0.000000000         # default value
+UseParallelTimer              T     # default value
+UseTreeTimer              F     # default value
+timing-split-scf-steps              F     # default value
+use-walltime              F     # default value
+alloc_report_level         0     # default value
+alloc_report_threshold          0.000000000         # default value
+xc.functional     GGA                                                                             
+xc.authors     PBE                                                                             
+#:block? XC.hybrid              F
+#:defined? XC.hybrid              F
+#:block? XC.cocktail              F
+#:defined? XC.cocktail              F
+MM.Cutoff          30.00000000     Bohr     # default value
+MM.UnitsEnergy     eV     # default value
+MM.UnitsDistance     Ang     # default value
+Atom.Debug              F     # default value
+WriteIonPlotFiles              F     # default value
+Atom.Debug.KB.Generation              F     # default value
+KB.New.Reference.Orbitals              F     # default value
+user-basis              F     # default value
+user-basis-netcdf              F     # default value
+#:block? DFTU.proj              F
+#:defined? DFTU.proj              F
+#:block? LDAU.proj              F
+#:defined? LDAU.proj              F
+Number_of_species              1
+%block Chemical_species_label
+ 1  6   C
+%endblock Chemical_species_label
+ReparametrizePseudos              F     # default value
+Restricted.Radial.Grid              T     # default value
+Rmax.Radial.Grid          0.000000000         # default value
+PAO.BasisSize     standard            # default value
+PAO.BasisType     split          # default value
+PAO.SoftDefault              F     # default value
+PAO.SoftInnerRadius         0.9000000000         # default value
+PAO.SoftPotential          40.00000000         # default value
+PAO.SplitNorm         0.1500000000         # default value
+PAO.SplitNormH         -1.000000000         # default value
+PAO.Polarization.NonPerturbative              F     # default value
+PAO.NonPerturbative.Polarization.Orbitals              F     # default value
+PAO.Polarization.NonPerturbative.Fallback              F     # default value
+%block PAO.Basis
+ C    3      0.99941
+  n=2   0   1   E   132.56520     4.52564
+      6.00093
+      1.00000
+  n=2   1   1   E     6.06390     6.06460
+      6.71080
+      1.00000
+  n=3   2   1   E    14.47828     4.32078
+      6.22538
+      1.00000
+%endblock PAO.Basis
+LDAU.ProjectorGenerationMethod         2     # default value
+DFTU.ProjectorGenerationMethod         2     # default value
+LDAU.EnergyShift         0.5000000000E-01 Ry     # default value
+DFTU.EnergyShift         0.5000000000E-01 Ry     # default value
+LDAU.CutoffNorm         0.9000000000         # default value
+DFTU.CutoffNorm         0.9000000000         # default value
+PAO.SoftDefault              F     # default value
+PAO.SoftInnerRadius         0.9000000000         # default value
+PAO.SoftPotential          40.00000000         # default value
+LDAU.ThresholdTol         0.1000000000E-01     # default value
+DFTU.ThresholdTol         0.1000000000E-01     # default value
+LDAU.PopTol         0.1000000000E-02     # default value
+DFTU.PopTol         0.1000000000E-02     # default value
+LDAU.PotentialShift              F     # default value
+DFTU.PotentialShift              F     # default value
+LDAU.FirstIteration              F     # default value
+DFTU.FirstIteration              F     # default value
+FilterCutoff          0.000000000     Ry     # default value
+FilterTol          0.000000000     Ry     # default value
+spin-orbit-strength          1.000000000         # default value
+Use.PSML.KB.Projectors              T     # default value
+Use.PSML.Vlocal              T     # default value
+PSML.KB.Projectors              T     # default value
+PSML.Vlocal              T     # default value
+psml.chlocal.build.r0         0.4000000000E-02     # default value
+psml.chlocal.build.delta         0.5000000000E-02     # default value
+psml.chlocal.build.poly_order_rlin         4     # default value
+chlocal-use-charge-cutoff-for-vlocal-fit              F     # default value
+psml.chlocal.build.rr1         0.1000000000E-02     # default value
+psml.chlocal.build.exp_al          1.012000000         # default value
+psml.chlocal.build.poly_order_rofi         7     # default value
+PAO.EnergyShift         0.2000000000E-01 Ry     # default value
+PAO.SplitTailNorm              F     # default value
+PAO.FixSplitTable              F     # default value
+PAO.NewSplitCode              F     # default value
+PAO.Filter              F     # default value
+PAO.Filter              F     # default value
+PAO.Filter              F     # default value
+PAO.OldStylePolorbs              T     # default value
+PAO.SplitTailNorm              F     # default value
+PAO.FixSplitTable              F     # default value
+PAO.NewSplitCode              F     # default value
+Vna.Filter              F     # default value
+PCC.Filter              F     # default value
+PAO.BasisType     split          # default value
+Debug.Elec.Corr              F     # default value
+Atom-Setup-Only              F     # default value
+UseStructFile              F     # default value
+MD.UseStructFile              F     # default value
+#:block? LatticeParameters              F
+#:block? LatticeVectors              T
+%block LatticeVectors
+LatticeConstant          1.889726125           Bohr
+# above item originally: LatticeConstant          1.000000000     Ang       
+      23.4346474264  -1.2300000000   0.0000000000
+      12.7825349599  19.6800000000   0.0000000000
+       0.0000000000   0.0000000000  40.0000000000
+%endblock LatticeVectors
+AtomicCoordinatesFormat     Ang                                                                             
+NumberOfAtoms            364
+#:block? AtomicCoordinatesOrigin              F
+#:defined? AtomicCoordinatesOrigin              F
+ZM.UnitsLength     Bohr           # default value
+ZM.UnitsAngle     rad            # default value
+ZM.ForceTolLength         0.1555740000E-02 Ry/Bohr     # default value
+ZM.ForceTolAngle         0.3565490000E-02 Ry/rad     # default value
+ZM.MaxDisplLength         0.2000000000     Bohr     # default value
+ZM.MaxDisplAngle         0.3000000000E-02 rad     # default value
+ZM.CalcAllForces              F     # default value
+%block AtomicCoordinatesAndAtomicSpecies
+       1.4202816622	   0.0000000000	  18.3250000000	 1
+       5.6811266488	   0.0000000000	  18.3250000000	 1
+       9.9419716354	   0.0000000000	  18.3250000000	 1
+      14.2028166221	   0.0000000000	  18.3250000000	 1
+      18.4636616087	   0.0000000000	  18.3250000000	 1
+      22.7245065953	   0.0000000000	  18.3250000000	 1
+       3.5507041555	   1.2300000000	  18.3250000000	 1
+       7.8115491421	   1.2300000000	  18.3250000000	 1
+      12.0723941288	   1.2300000000	  18.3250000000	 1
+      16.3332391154	   1.2300000000	  18.3250000000	 1
+      20.5940841020	   1.2300000000	  18.3250000000	 1
+      24.8549290886	   1.2300000000	  18.3250000000	 1
+       5.6811266488	   2.4600000000	  18.3250000000	 1
+       9.9419716354	   2.4600000000	  18.3250000000	 1
+      14.2028166221	   2.4600000000	  18.3250000000	 1
+      18.4636616087	   2.4600000000	  18.3250000000	 1
+      22.7245065953	   2.4600000000	  18.3250000000	 1
+       3.5507041555	   3.6900000000	  18.3250000000	 1
+       7.8115491421	   3.6900000000	  18.3250000000	 1
+      12.0723941288	   3.6900000000	  18.3250000000	 1
+      16.3332391154	   3.6900000000	  18.3250000000	 1
+      20.5940841020	   3.6900000000	  18.3250000000	 1
+      24.8549290886	   3.6900000000	  18.3250000000	 1
+       5.6811266488	   4.9200000000	  18.3250000000	 1
+       9.9419716354	   4.9200000000	  18.3250000000	 1
+      14.2028166221	   4.9200000000	  18.3250000000	 1
+      18.4636616087	   4.9200000000	  18.3250000000	 1
+      22.7245065953	   4.9200000000	  18.3250000000	 1
+      26.9853515819	   4.9200000000	  18.3250000000	 1
+       7.8115491421	   6.1500000000	  18.3250000000	 1
+      12.0723941288	   6.1500000000	  18.3250000000	 1
+      16.3332391154	   6.1500000000	  18.3250000000	 1
+      20.5940841020	   6.1500000000	  18.3250000000	 1
+      24.8549290886	   6.1500000000	  18.3250000000	 1
+       5.6811266488	   7.3800000000	  18.3250000000	 1
+       9.9419716354	   7.3800000000	  18.3250000000	 1
+      14.2028166221	   7.3800000000	  18.3250000000	 1
+      18.4636616087	   7.3800000000	  18.3250000000	 1
+      22.7245065953	   7.3800000000	  18.3250000000	 1
+      26.9853515819	   7.3800000000	  18.3250000000	 1
+       7.8115491421	   8.6100000000	  18.3250000000	 1
+      12.0723941288	   8.6100000000	  18.3250000000	 1
+      16.3332391154	   8.6100000000	  18.3250000000	 1
+      20.5940841020	   8.6100000000	  18.3250000000	 1
+      24.8549290886	   8.6100000000	  18.3250000000	 1
+      29.1157740752	   8.6100000000	  18.3250000000	 1
+       9.9419716354	   9.8400000000	  18.3250000000	 1
+      14.2028166221	   9.8400000000	  18.3250000000	 1
+      18.4636616087	   9.8400000000	  18.3250000000	 1
+      22.7245065953	   9.8400000000	  18.3250000000	 1
+      26.9853515819	   9.8400000000	  18.3250000000	 1
+       7.8115491421	  11.0700000000	  18.3250000000	 1
+      12.0723941288	  11.0700000000	  18.3250000000	 1
+      16.3332391154	  11.0700000000	  18.3250000000	 1
+      20.5940841020	  11.0700000000	  18.3250000000	 1
+      24.8549290886	  11.0700000000	  18.3250000000	 1
+      29.1157740752	  11.0700000000	  18.3250000000	 1
+       9.9419716354	  12.3000000000	  18.3250000000	 1
+      14.2028166221	  12.3000000000	  18.3250000000	 1
+      18.4636616087	  12.3000000000	  18.3250000000	 1
+      22.7245065953	  12.3000000000	  18.3250000000	 1
+      26.9853515819	  12.3000000000	  18.3250000000	 1
+      31.2461965685	  12.3000000000	  18.3250000000	 1
+      12.0723941288	  13.5300000000	  18.3250000000	 1
+      16.3332391154	  13.5300000000	  18.3250000000	 1
+      20.5940841020	  13.5300000000	  18.3250000000	 1
+      24.8549290886	  13.5300000000	  18.3250000000	 1
+      29.1157740752	  13.5300000000	  18.3250000000	 1
+       9.9419716354	  14.7600000000	  18.3250000000	 1
+      14.2028166221	  14.7600000000	  18.3250000000	 1
+      18.4636616087	  14.7600000000	  18.3250000000	 1
+      22.7245065953	  14.7600000000	  18.3250000000	 1
+      26.9853515819	  14.7600000000	  18.3250000000	 1
+      31.2461965685	  14.7600000000	  18.3250000000	 1
+      12.0723941288	  15.9900000000	  18.3250000000	 1
+      16.3332391154	  15.9900000000	  18.3250000000	 1
+      20.5940841020	  15.9900000000	  18.3250000000	 1
+      24.8549290886	  15.9900000000	  18.3250000000	 1
+      29.1157740752	  15.9900000000	  18.3250000000	 1
+      33.3766190619	  15.9900000000	  18.3250000000	 1
+      14.2028166221	  17.2200000000	  18.3250000000	 1
+      18.4636616087	  17.2200000000	  18.3250000000	 1
+      22.7245065953	  17.2200000000	  18.3250000000	 1
+      26.9853515819	  17.2200000000	  18.3250000000	 1
+      31.2461965685	  17.2200000000	  18.3250000000	 1
+      12.0723941288	  18.4500000000	  18.3250000000	 1
+      16.3332391154	  18.4500000000	  18.3250000000	 1
+      20.5940841020	  18.4500000000	  18.3250000000	 1
+      24.8549290886	  18.4500000000	  18.3250000000	 1
+      29.1157740752	  18.4500000000	  18.3250000000	 1
+      33.3766190619	  18.4500000000	  18.3250000000	 1
+       2.8405633244	   0.0000000000	  18.3250000000	 1
+       7.1014083110	   0.0000000000	  18.3250000000	 1
+      11.3622532977	   0.0000000000	  18.3250000000	 1
+      15.6230982843	   0.0000000000	  18.3250000000	 1
+      19.8839432709	   0.0000000000	  18.3250000000	 1
+      24.1447882575	   0.0000000000	  18.3250000000	 1
+       4.9709858177	   1.2300000000	  18.3250000000	 1
+       9.2318308043	   1.2300000000	  18.3250000000	 1
+      13.4926757910	   1.2300000000	  18.3250000000	 1
+      17.7535207776	   1.2300000000	  18.3250000000	 1
+      22.0143657642	   1.2300000000	  18.3250000000	 1
+       2.8405633244	   2.4600000000	  18.3250000000	 1
+       7.1014083110	   2.4600000000	  18.3250000000	 1
+      11.3622532977	   2.4600000000	  18.3250000000	 1
+      15.6230982843	   2.4600000000	  18.3250000000	 1
+      19.8839432709	   2.4600000000	  18.3250000000	 1
+      24.1447882575	   2.4600000000	  18.3250000000	 1
+       4.9709858177	   3.6900000000	  18.3250000000	 1
+       9.2318308043	   3.6900000000	  18.3250000000	 1
+      13.4926757910	   3.6900000000	  18.3250000000	 1
+      17.7535207776	   3.6900000000	  18.3250000000	 1
+      22.0143657642	   3.6900000000	  18.3250000000	 1
+      26.2752107508	   3.6900000000	  18.3250000000	 1
+       7.1014083110	   4.9200000000	  18.3250000000	 1
+      11.3622532977	   4.9200000000	  18.3250000000	 1
+      15.6230982843	   4.9200000000	  18.3250000000	 1
+      19.8839432709	   4.9200000000	  18.3250000000	 1
+      24.1447882575	   4.9200000000	  18.3250000000	 1
+       4.9709858177	   6.1500000000	  18.3250000000	 1
+       9.2318308043	   6.1500000000	  18.3250000000	 1
+      13.4926757910	   6.1500000000	  18.3250000000	 1
+      17.7535207776	   6.1500000000	  18.3250000000	 1
+      22.0143657642	   6.1500000000	  18.3250000000	 1
+      26.2752107508	   6.1500000000	  18.3250000000	 1
+       7.1014083110	   7.3800000000	  18.3250000000	 1
+      11.3622532977	   7.3800000000	  18.3250000000	 1
+      15.6230982843	   7.3800000000	  18.3250000000	 1
+      19.8839432709	   7.3800000000	  18.3250000000	 1
+      24.1447882575	   7.3800000000	  18.3250000000	 1
+      28.4056332441	   7.3800000000	  18.3250000000	 1
+       9.2318308043	   8.6100000000	  18.3250000000	 1
+      13.4926757910	   8.6100000000	  18.3250000000	 1
+      17.7535207776	   8.6100000000	  18.3250000000	 1
+      22.0143657642	   8.6100000000	  18.3250000000	 1
+      26.2752107508	   8.6100000000	  18.3250000000	 1
+       7.1014083110	   9.8400000000	  18.3250000000	 1
+      11.3622532977	   9.8400000000	  18.3250000000	 1
+      15.6230982843	   9.8400000000	  18.3250000000	 1
+      19.8839432709	   9.8400000000	  18.3250000000	 1
+      24.1447882575	   9.8400000000	  18.3250000000	 1
+      28.4056332441	   9.8400000000	  18.3250000000	 1
+       9.2318308043	  11.0700000000	  18.3250000000	 1
+      13.4926757910	  11.0700000000	  18.3250000000	 1
+      17.7535207776	  11.0700000000	  18.3250000000	 1
+      22.0143657642	  11.0700000000	  18.3250000000	 1
+      26.2752107508	  11.0700000000	  18.3250000000	 1
+      30.5360557374	  11.0700000000	  18.3250000000	 1
+      11.3622532977	  12.3000000000	  18.3250000000	 1
+      15.6230982843	  12.3000000000	  18.3250000000	 1
+      19.8839432709	  12.3000000000	  18.3250000000	 1
+      24.1447882575	  12.3000000000	  18.3250000000	 1
+      28.4056332441	  12.3000000000	  18.3250000000	 1
+       9.2318308043	  13.5300000000	  18.3250000000	 1
+      13.4926757910	  13.5300000000	  18.3250000000	 1
+      17.7535207776	  13.5300000000	  18.3250000000	 1
+      22.0143657642	  13.5300000000	  18.3250000000	 1
+      26.2752107508	  13.5300000000	  18.3250000000	 1
+      30.5360557374	  13.5300000000	  18.3250000000	 1
+      11.3622532977	  14.7600000000	  18.3250000000	 1
+      15.6230982843	  14.7600000000	  18.3250000000	 1
+      19.8839432709	  14.7600000000	  18.3250000000	 1
+      24.1447882575	  14.7600000000	  18.3250000000	 1
+      28.4056332441	  14.7600000000	  18.3250000000	 1
+      32.6664782307	  14.7600000000	  18.3250000000	 1
+      13.4926757910	  15.9900000000	  18.3250000000	 1
+      17.7535207776	  15.9900000000	  18.3250000000	 1
+      22.0143657642	  15.9900000000	  18.3250000000	 1
+      26.2752107508	  15.9900000000	  18.3250000000	 1
+      30.5360557374	  15.9900000000	  18.3250000000	 1
+      11.3622532977	  17.2200000000	  18.3250000000	 1
+      15.6230982843	  17.2200000000	  18.3250000000	 1
+      19.8839432709	  17.2200000000	  18.3250000000	 1
+      24.1447882575	  17.2200000000	  18.3250000000	 1
+      28.4056332441	  17.2200000000	  18.3250000000	 1
+      32.6664782307	  17.2200000000	  18.3250000000	 1
+      13.4926757910	  18.4500000000	  18.3250000000	 1
+      17.7535207776	  18.4500000000	  18.3250000000	 1
+      22.0143657642	  18.4500000000	  18.3250000000	 1
+      26.2752107508	  18.4500000000	  18.3250000000	 1
+      30.5360557374	  18.4500000000	  18.3250000000	 1
+      34.7969007241	  18.4500000000	  18.3250000000	 1
+       3.6599565911	   0.8515384615	  21.6750000000	 1
+       7.8973903415	   0.4054945055	  21.6750000000	 1
+      12.1348240919	  -0.0405494505	  21.6750000000	 1
+      16.3722578424	  -0.4865934066	  21.6750000000	 1
+      20.6096915928	  -0.9326373626	  21.6750000000	 1
+       1.6700015149	   2.2978021978	  21.6750000000	 1
+       5.9074352653	   1.8517582418	  21.6750000000	 1
+      10.1448690158	   1.4057142857	  21.6750000000	 1
+      14.3823027662	   0.9596703297	  21.6750000000	 1
+      18.6197365166	   0.5136263736	  21.6750000000	 1
+      22.8571702670	   0.0675824176	  21.6750000000	 1
+       3.9174801892	   3.2980219780	  21.6750000000	 1
+       8.1549139396	   2.8519780220	  21.6750000000	 1
+      12.3923476900	   2.4059340659	  21.6750000000	 1
+      16.6297814405	   1.9598901099	  21.6750000000	 1
+      20.8672151909	   1.5138461538	  21.6750000000	 1
+       6.1649588634	   4.2982417582	  21.6750000000	 1
+      10.4023926139	   3.8521978022	  21.6750000000	 1
+      14.6398263643	   3.4061538462	  21.6750000000	 1
+      18.8772601147	   2.9601098901	  21.6750000000	 1
+      23.1146938651	   2.5140659341	  21.6750000000	 1
+       4.1750037873	   5.7445054945	  21.6750000000	 1
+       8.4124375377	   5.2984615385	  21.6750000000	 1
+      12.6498712881	   4.8524175824	  21.6750000000	 1
+      16.8873050385	   4.4063736264	  21.6750000000	 1
+      21.1247387890	   3.9603296703	  21.6750000000	 1
+      25.3621725394	   3.5142857143	  21.6750000000	 1
+       6.4224824615	   6.7447252747	  21.6750000000	 1
+      10.6599162119	   6.2986813187	  21.6750000000	 1
+      14.8973499624	   5.8526373626	  21.6750000000	 1
+      19.1347837128	   5.4065934066	  21.6750000000	 1
+      23.3722174632	   4.9605494505	  21.6750000000	 1
+       8.6699611358	   7.7449450549	  21.6750000000	 1
+      12.9073948862	   7.2989010989	  21.6750000000	 1
+      17.1448286366	   6.8528571429	  21.6750000000	 1
+      21.3822623871	   6.4068131868	  21.6750000000	 1
+      25.6196961375	   5.9607692308	  21.6750000000	 1
+       6.6800060596	   9.1912087912	  21.6750000000	 1
+      10.9174398100	   8.7451648352	  21.6750000000	 1
+      15.1548735605	   8.2991208791	  21.6750000000	 1
+      19.3923073109	   7.8530769231	  21.6750000000	 1
+      23.6297410613	   7.4070329670	  21.6750000000	 1
+      27.8671748118	   6.9609890110	  21.6750000000	 1
+       8.9274847339	  10.1914285714	  21.6750000000	 1
+      13.1649184843	   9.7453846154	  21.6750000000	 1
+      17.4023522347	   9.2993406593	  21.6750000000	 1
+      21.6397859852	   8.8532967033	  21.6750000000	 1
+      25.8772197356	   8.4072527473	  21.6750000000	 1
+      11.1749634081	  11.1916483516	  21.6750000000	 1
+      15.4123971586	  10.7456043956	  21.6750000000	 1
+      19.6498309090	  10.2995604396	  21.6750000000	 1
+      23.8872646594	   9.8535164835	  21.6750000000	 1
+      28.1246984098	   9.4074725275	  21.6750000000	 1
+       9.1850083320	  12.6379120879	  21.6750000000	 1
+      13.4224420824	  12.1918681319	  21.6750000000	 1
+      17.6598758328	  11.7458241758	  21.6750000000	 1
+      21.8973095832	  11.2997802198	  21.6750000000	 1
+      26.1347433337	  10.8537362637	  21.6750000000	 1
+      30.3721770841	  10.4076923077	  21.6750000000	 1
+      11.4324870062	  13.6381318681	  21.6750000000	 1
+      15.6699207567	  13.1920879121	  21.6750000000	 1
+      19.9073545071	  12.7460439560	  21.6750000000	 1
+      24.1447882575	  12.3000000000	  21.6750000000	 1
+      28.3822220079	  11.8539560440	  21.6750000000	 1
+      13.6799656805	  14.6383516484	  21.6750000000	 1
+      17.9173994309	  14.1923076923	  21.6750000000	 1
+      22.1548331813	  13.7462637363	  21.6750000000	 1
+      26.3922669318	  13.3002197802	  21.6750000000	 1
+      30.6297006822	  12.8541758242	  21.6750000000	 1
+      11.6900106043	  16.0846153846	  21.6750000000	 1
+      15.9274443547	  15.6385714286	  21.6750000000	 1
+      20.1648781052	  15.1925274725	  21.6750000000	 1
+      24.4023118556	  14.7464835165	  21.6750000000	 1
+      28.6397456060	  14.3004395604	  21.6750000000	 1
+      32.8771793565	  13.8543956044	  21.6750000000	 1
+      13.9374892786	  17.0848351648	  21.6750000000	 1
+      18.1749230290	  16.6387912088	  21.6750000000	 1
+      22.4123567794	  16.1927472527	  21.6750000000	 1
+      26.6497905299	  15.7467032967	  21.6750000000	 1
+      30.8872242803	  15.3006593407	  21.6750000000	 1
+      16.1849679528	  18.0850549451	  21.6750000000	 1
+      20.4224017033	  17.6390109890	  21.6750000000	 1
+      24.6598354537	  17.1929670330	  21.6750000000	 1
+      28.8972692041	  16.7469230769	  21.6750000000	 1
+      33.1347029546	  16.3008791209	  21.6750000000	 1
+      14.1950128767	  19.5313186813	  21.6750000000	 1
+      18.4324466271	  19.0852747253	  21.6750000000	 1
+      22.6698803775	  18.6392307692	  21.6750000000	 1
+      26.9073141280	  18.1931868132	  21.6750000000	 1
+      31.1447478784	  17.7471428571	  21.6750000000	 1
+      35.3821816288	  17.3010989011	  21.6750000000	 1
+       0.8350007575	   1.1489010989	  21.6750000000	 1
+       5.0724345079	   0.7028571429	  21.6750000000	 1
+       9.3098682583	   0.2568131868	  21.6750000000	 1
+      13.5473020087	  -0.1892307692	  21.6750000000	 1
+      17.7847357592	  -0.6352747253	  21.6750000000	 1
+      22.0221695096	  -1.0813186813	  21.6750000000	 1
+       3.0824794317	   2.1491208791	  21.6750000000	 1
+       7.3199131821	   1.7030769231	  21.6750000000	 1
+      11.5573469326	   1.2570329670	  21.6750000000	 1
+      15.7947806830	   0.8109890110	  21.6750000000	 1
+      20.0322144334	   0.3649450549	  21.6750000000	 1
+       5.3299581060	   3.1493406593	  21.6750000000	 1
+       9.5673918564	   2.7032967033	  21.6750000000	 1
+      13.8048256068	   2.2572527473	  21.6750000000	 1
+      18.0422593573	   1.8112087912	  21.6750000000	 1
+      22.2796931077	   1.3651648352	  21.6750000000	 1
+       3.3400030298	   4.5956043956	  21.6750000000	 1
+       7.5774367802	   4.1495604396	  21.6750000000	 1
+      11.8148705307	   3.7035164835	  21.6750000000	 1
+      16.0523042811	   3.2574725275	  21.6750000000	 1
+      20.2897380315	   2.8114285714	  21.6750000000	 1
+      24.5271717820	   2.3653846154	  21.6750000000	 1
+       5.5874817041	   5.5958241758	  21.6750000000	 1
+       9.8249154545	   5.1497802198	  21.6750000000	 1
+      14.0623492049	   4.7037362637	  21.6750000000	 1
+      18.2997829554	   4.2576923077	  21.6750000000	 1
+      22.5372167058	   3.8116483516	  21.6750000000	 1
+       7.8349603783	   6.5960439560	  21.6750000000	 1
+      12.0723941288	   6.1500000000	  21.6750000000	 1
+      16.3098278792	   5.7039560440	  21.6750000000	 1
+      20.5472616296	   5.2579120879	  21.6750000000	 1
+      24.7846953800	   4.8118681319	  21.6750000000	 1
+       5.8450053022	   8.0423076923	  21.6750000000	 1
+      10.0824390526	   7.5962637363	  21.6750000000	 1
+      14.3198728030	   7.1502197802	  21.6750000000	 1
+      18.5573065534	   6.7041758242	  21.6750000000	 1
+      22.7947403039	   6.2581318681	  21.6750000000	 1
+      27.0321740543	   5.8120879121	  21.6750000000	 1
+       8.0924839764	   9.0425274725	  21.6750000000	 1
+      12.3299177268	   8.5964835165	  21.6750000000	 1
+      16.5673514773	   8.1504395604	  21.6750000000	 1
+      20.8047852277	   7.7043956044	  21.6750000000	 1
+      25.0422189781	   7.2583516484	  21.6750000000	 1
+      10.3399626507	  10.0427472527	  21.6750000000	 1
+      14.5773964011	   9.5967032967	  21.6750000000	 1
+      18.8148301515	   9.1506593407	  21.6750000000	 1
+      23.0522639020	   8.7046153846	  21.6750000000	 1
+      27.2896976524	   8.2585714286	  21.6750000000	 1
+       8.3500075745	  11.4890109890	  21.6750000000	 1
+      12.5874413249	  11.0429670330	  21.6750000000	 1
+      16.8248750754	  10.5969230769	  21.6750000000	 1
+      21.0623088258	  10.1508791209	  21.6750000000	 1
+      25.2997425762	   9.7048351648	  21.6750000000	 1
+      29.5371763267	   9.2587912088	  21.6750000000	 1
+      10.5974862488	  12.4892307692	  21.6750000000	 1
+      14.8349199992	  12.0431868132	  21.6750000000	 1
+      19.0723537496	  11.5971428571	  21.6750000000	 1
+      23.3097875001	  11.1510989011	  21.6750000000	 1
+      27.5472212505	  10.7050549451	  21.6750000000	 1
+      12.8449649230	  13.4894505495	  21.6750000000	 1
+      17.0823986735	  13.0434065934	  21.6750000000	 1
+      21.3198324239	  12.5973626374	  21.6750000000	 1
+      25.5572661743	  12.1513186813	  21.6750000000	 1
+      29.7946999247	  11.7052747253	  21.6750000000	 1
+      10.8550098469	  14.9357142857	  21.6750000000	 1
+      15.0924435973	  14.4896703297	  21.6750000000	 1
+      19.3298773477	  14.0436263736	  21.6750000000	 1
+      23.5673110982	  13.5975824176	  21.6750000000	 1
+      27.8047448486	  13.1515384615	  21.6750000000	 1
+      32.0421785990	  12.7054945055	  21.6750000000	 1
+      13.1024885211	  15.9359340659	  21.6750000000	 1
+      17.3399222716	  15.4898901099	  21.6750000000	 1
+      21.5773560220	  15.0438461538	  21.6750000000	 1
+      25.8147897724	  14.5978021978	  21.6750000000	 1
+      30.0522235228	  14.1517582418	  21.6750000000	 1
+      15.3499671954	  16.9361538462	  21.6750000000	 1
+      19.5874009458	  16.4901098901	  21.6750000000	 1
+      23.8248346962	  16.0440659341	  21.6750000000	 1
+      28.0622684467	  15.5980219780	  21.6750000000	 1
+      32.2997021971	  15.1519780220	  21.6750000000	 1
+      13.3600121192	  18.3824175824	  21.6750000000	 1
+      17.5974458696	  17.9363736264	  21.6750000000	 1
+      21.8348796201	  17.4903296703	  21.6750000000	 1
+      26.0723133705	  17.0442857143	  21.6750000000	 1
+      30.3097471209	  16.5982417582	  21.6750000000	 1
+      34.5471808714	  16.1521978022	  21.6750000000	 1
+      15.6074907935	  19.3826373626	  21.6750000000	 1
+      19.8449245439	  18.9365934066	  21.6750000000	 1
+      24.0823582943	  18.4905494505	  21.6750000000	 1
+      28.3197920448	  18.0445054945	  21.6750000000	 1
+      32.5572257952	  17.5984615385	  21.6750000000	 1
+%endblock AtomicCoordinatesAndAtomicSpecies
+MD.UseSaveXV              T
+MD.UseSaveZM              F     # default value
+WriteCoorInitial              T     # default value
+MD.TypeOfRun     CG                                                                              
+MD.TypeOfRun     CG                                                                              
+MD.InitialTimeStep         1     # default value
+MD.FinalTimeStep         1     # default value
+MD.TypeOfRun     CG                                                                              
+MaxBondDistance          6.000000000     Bohr     # default value
+Output-Structure-Only              F     # default value
+WriteCoorXmol              F     # default value
+#:physical? MaxWalltime              F
+MaxWalltime         0.1797693135+309     # default value
+#:physical? MaxWalltime.Slack              F
+MaxWalltime.Slack          5.000000000         # default value
+HSetupOnly              F     # default value
+LongOutput              F     # default value
+WriteDenchar              F     # default value
+WriteMullikenPop         0     # default value
+WriteOrbMom              F     # default value
+WriteHirshfeldPop              F     # default value
+WriteVoronoiPop              F     # default value
+PartialChargesAtEveryGeometry              F     # default value
+PartialChargesAtEveryScfStep              F     # default value
+MeshCutoff          300.0000000             Ry
+# above item originally: MeshCutoff          300.0000000     Ry        
+NetCharge          0.000000000         # default value
+MinSCFIterations              3
+MaxSCFIterations            300
+SCF.MustConverge              T     # default value
+#:block? TS.MixH              F
+#:defined? TS.MixH              F
+#:block? MixHamiltonian              F
+#:defined? MixHamiltonian              F
+#:block? MixCharge              F
+#:defined? MixCharge              F
+TS.MixH              T     # default value
+MixHamiltonian              T     # default value
+MixCharge              F     # default value
+SCF.Mix     Hamiltonian     # default value
+Compat-pre-v4-DM-H              F     # default value
+SCF.MixAfterConvergence              F     # default value
+SCF.Recompute-H-After-Scf              F     # default value
+DM.NumberPulay         0     # default value
+DM.NumberBroyden         0     # default value
+DM.FIRE.Mixing              F     # default value
+DM.MixSCF1              T     # default value
+SCF.Mix.First              T
+SCF.Mix.First.Force              F     # default value
+DM.PulayOnFile              F     # default value
+DM.MixingWeight         0.2500000000         # default value
+DM.OccupancyTolerance         0.1000000000E-11     # default value
+DM.NumberKick         0     # default value
+DM.KickMixingWeight         0.5000000000         # default value
+DM.RequireHarrisConvergence              F     # default value
+SCF.Harris.Converge              F     # default value
+DM.HarrisTolerance         0.7349864435E-05 Ry     # default value
+SCF.Harris.Tolerance         0.7349864435E-05 Ry     # default value
+SCF.DM.Converge              T     # default value
+DM.Tolerance         0.1000000000E-03     # default value
+SCF.DM.Tolerance         0.1000000000E-03
+SCF.EDM.Converge              F     # default value
+SCF.EDM.Tolerance         0.7349864435E-04 Ry     # default value
+SCF.H.Converge              T     # default value
+SCF.H.Tolerance         0.7349864435E-04 Ry     # default value
+DM.RequireEnergyConvergence              F     # default value
+SCF.FreeE.Converge              F     # default value
+DM.EnergyTolerance         0.7349864435E-05 Ry     # default value
+SCF.FreeE.Tolerance         0.7349864435E-05 Ry     # default value
+MonitorForcesInSCF              F     # default value
+SCF.MonitorForces              F     # default value
+DFTD3              T
+UseSaveData              F     # default value
+DM.UseSaveDM              T
+NeglNonOverlapInt              F     # default value
+SolutionMethod     diagon                                                                          
+ElectronicTemperature         0.1900000000E-02 Ry     # default value
+FixSpin              F     # default value
+Spin.Fix              F     # default value
+ON.MaxNumIter      1000     # default value
+ON.etol         0.1000000000E-07     # default value
+ON.eta          0.000000000     Ry     # default value
+ON.eta_alpha          0.000000000     Ry     # default value
+ON.eta_beta          0.000000000     Ry     # default value
+On.RcLWF          9.500000000     Bohr     # default value
+ON.UseSaveLWF              F     # default value
+ON.functional     kim     # default value
+ON.ChemicalPotentialUse              F     # default value
+ON.ChemicalPotential              F     # default value
+ON.ChemicalPotentialRc          9.500000000     Bohr     # default value
+ON.ChemicalPotentialTemperature         0.5000000000E-01 Ry     # default value
+ON.ChemicalPotentialOrder       100     # default value
+TDED.WF.Initialize              F     # default value
+TDED.Saverho              F     # default value
+TDED.Nsaverho       100     # default value
+TDED.Write.Etot              T     # default value
+TDED.Write.Eig              F     # default value
+TDED.Write.Dipole              F     # default value
+TDED.Extrapolate              F     # default value
+TDED.TimeStep         0.1000000000E-02 fs     # default value
+TDED.Nsteps         1     # default value
+TDED.Extrapolate.Substeps         3     # default value
+TDED.Inverse.Linear              T     # default value
+TDED.WF.Save              F     # default value
+MD.VariableCell              F
+compat-pre-v4-dynamics              F     # default value
+MD.TypeOfRun     CG                                                                              
+MD.UseSaveCG              F     # default value
+Optim.Broyden              F     # default value
+#:block? Optim.Broyden              F
+#:defined? Optim.Broyden              F
+MD.NumCGsteps            200
+MD.Steps       200     # default value
+MD.MaxCGDispl         0.5000000000           Bohr
+# above item originally: MD.MaxCGDispl         0.5000000000     Bohr      
+MD.MaxDispl         0.5000000000     Bohr     # default value
+MD.MaxForceTol         0.3889380762E-03    Ry/Bohr
+# above item originally: MD.MaxForceTol         0.1000000000E-01 eV/Ang    
+MD.MaxStressTol         0.6797730000E-04 Ry/Bohr**3     # default value
+GeometryMustConverge              F     # default value
+MD.InitialTimeStep         1     # default value
+#:block? MD.Steps              F
+#:defined? MD.Steps              F
+MD.FinalTimeStep         1     # default value
+MD.LengthTimeStep          1.000000000     fs     # default value
+MD.Quench              F     # default value
+MD.FireQuench              F     # default value
+MD.InitialTemperature          0.000000000     K     # default value
+MD.TargetTemperature          0.000000000     K     # default value
+#:block? MD.TargetPressure              F
+#:defined? MD.TargetPressure              F
+MD.TargetPressure          0.000000000     Ry/Bohr**3     # default value
+Target.Pressure          0.000000000     Ry/Bohr**3     # default value
+MD.NoseMass          100.0000000     Ry*fs**2     # default value
+MD.ParrinelloRahmanMass          100.0000000     Ry*fs**2     # default value
+MD.AnnealOption     TemperatureAndPressure     # default value
+MD.TauRelax          100.0000000     fs     # default value
+MD.BulkModulus         0.6797730000E-02 Ry/Bohr**3     # default value
+MD.FCDispl         0.4000000000E-01 Bohr     # default value
+MD.FCfirst         1     # default value
+MD.FClast       364     # default value
+UseSpatialDecomposition              F     # default value
+UseDomainDecomposition              F     # default value
+SCF.Mix.Spin     all     # default value
+Mixer.Debug              F     # default value
+Mixer.Debug.MPI              F     # default value
+DM.NumberPulay         2     # default value
+DM.NumberBroyden         0     # default value
+DM.MixingWeight         0.2500000000         # default value
+DM.NumberKick         0     # default value
+DM.KickMixingWeight         0.5000000000         # default value
+SCF.LinearMixingAfterPulay              F     # default value
+SCF.MixingWeightAfterPulay         0.2500000000         # default value
+SCF.Mixer.History             12
+SCF.Mixer.Weight         0.1000000000    
+SCF.Mixer.Kick         0     # default value
+SCF.Mixer.Kick.Weight         0.5000000000         # default value
+SCF.Mixer.Restart         0     # default value
+SCF.Mixer.Restart.Save         1     # default value
+SCF.Mixer.Method     Pulay     # default value
+SCF.Mixer.Variant     original     # default value
+SCF.Mixer.Linear.After        -1     # default value
+SCF.Mixer.Linear.After.Weight         0.2500000000         # default value
+#:block? ChargeGeometries              F
+#:defined? ChargeGeometries              F
+#:block? ChargeGeometries              F
+#:defined? ChargeGeometries              F
+BulkBias.V          0.000000000     Ry     # default value
+BulkBias.Voltage          0.000000000     Ry     # default value
+BulkBias.Tolerance         0.1000000000E-14     # default value
+BulkBias.Current              T     # default value
+Harris_functional              F     # default value
+ForceAuxCell              F     # default value
+#:block? Optim.Broyden.History.Steps              F
+#:defined? Optim.Broyden.History.Steps              F
+#:block? Optim.Broyden.Cycle.On.Maxit              F
+#:defined? Optim.Broyden.Cycle.On.Maxit              F
+#:block? Optim.Broyden.Variable.Weight              F
+#:defined? Optim.Broyden.Variable.Weight              F
+#:block? Optim.Broyden.Debug              F
+#:defined? Optim.Broyden.Debug              F
+#:block? Optim.Broyden.Initial.Inverse.Jacobian              F
+#:defined? Optim.Broyden.Initial.Inverse.Jacobian              F
+Write.Kpoints              F     # default value
+Write.Forces              F     # default value
+Write.DM              T     # default value
+Write.DM.End.Of.Cycle              T     # default value
+Write.H              F     # default value
+Write.H.End.Of.Cycle              F     # default value
+Write.DM.NetCDF              F     # default value
+WriteDM.History.NetCDF              F     # default value
+WriteDMHS.NetCDF              F     # default value
+WriteDMHS.History.NetCDF              F     # default value
+SCF.Read.Charge.NetCDF              F     # default value
+SCF.Read.Deformation.Charge.NetCDF              F     # default value
+Write.TSHS.History              F     # default value
+SaveInitialChargeDensity              F     # default value
+AnalyzeChargeDensityOnly              F     # default value
+UseNewDiagk              F     # default value
+Diag.WFS.Cache     none     # default value
+WriteBands              F     # default value
+WriteKbands              F     # default value
+WriteEigenvalues              F     # default value
+WriteCoorStep              F     # default value
+WriteMDhistory              F     # default value
+WriteMDXmol              T     # default value
+WriteOrbitalIndex              T     # default value
+Write.Graphviz     none     # default value
+WriteCoorStep              F     # default value
+SaveHS              F     # default value
+ReInitialiseDM              T     # default value
+DM.AllowReuse              T     # default value
+DM.AllowExtrapolation              T     # default value
+DM.History.Depth         1     # default value
+DM.NormalizationTolerance         0.1000000000E-04     # default value
+DM.NormalizeDuringSCF              T     # default value
+MullikenInSCF              F     # default value
+SpinInSCF              F     # default value
+WarningMinimumAtomicDistance          1.000000000     Bohr     # default value
+BornCharge              F     # default value
+ChangeKgridInMD              F     # default value
+MD.RelaxCellOnly              F     # default value
+MD.RemoveIntraMolecularPressure              F     # default value
+COOP.Write              F     # default value
+SaveRho              F     # default value
+SaveDeltaRho              F     # default value
+SaveRhoXC              F     # default value
+SaveElectrostaticPotential              F     # default value
+SaveNeutralAtomPotential              F     # default value
+SaveTotalPotential              F     # default value
+SaveIonicCharge              F     # default value
+SaveBaderCharge              F     # default value
+SaveTotalCharge              F     # default value
+Siesta2Wannier90.WriteMmn              F     # default value
+Siesta2Wannier90.WriteUnk              F     # default value
+Siesta2Wannier90.WriteAmn              F     # default value
+Siesta2Wannier90.WriteEig              F     # default value
+#:block? Siesta2Wannier90.NumberOfBandsUp              F
+#:defined? Siesta2Wannier90.NumberOfBandsUp              F
+#:block? Siesta2Wannier90.NumberOfBandsDown              F
+#:defined? Siesta2Wannier90.NumberOfBandsDown              F
+#:block? Siesta2Wannier90.NumberOfBands              F
+#:defined? Siesta2Wannier90.NumberOfBands              F
+Siesta2Wannier90.NumberOfBandsUp         0     # default value
+Siesta2Wannier90.NumberOfBandsDown         0     # default value
+Siesta2Wannier90.NumberOfBands         0     # default value
+CDF.Save              F     # default value
+CDF.Compress         0     # default value
+CDF.MPI              F     # default value
+CDF.Read.Parallel              F     # default value
+#:block-line-count? Wannier.Manifolds   0
+Wannier.Manifolds.R.between              F     # default value
+Wannier.Manifold.IndexPerturbed         1     # default value
+Wannier.Mmn.Diagonal              F     # default value
+DFTD3.BJdamping              T     # default value
+DFTD3.UseXCDefaults              T     # default value
+DFTD3.s9          1.000000000         # default value
+DFTD3.s6          1.000000000         # default value
+DFTD3.rs6          1.000000000         # default value
+DFTD3.s8          1.000000000         # default value
+DFTD3.rs8          1.000000000         # default value
+DFTD3.a1         0.4000000000         # default value
+DFTD3.a2          5.000000000         # default value
+DFTD3.alpha          14.00000000         # default value
+DFTD3.s9          1.000000000         # default value
+DFTD3.CoordinationCutoff          10.00000000     Bohr     # default value
+DFTD3.2BodyCutoff          60.00000000     Bohr     # default value
+DFTD3.3BodyCutoff          40.00000000     Bohr     # default value
+DM.AllowReuse              T     # default value
+DM.AllowExtrapolation              T     # default value
+DM.AllowExtrapolation              F     # default value
+NumberOfEigenStates      3276     # default value
+RcSpatial          0.000000000     Bohr     # default value
+ProcessorGridX         1     # default value
+ProcessorGridY         1     # default value
+ProcessorGridZ         1     # default value
+FFT.ProcessorY.traditional              F     # default value
+processorY         8     # default value
+blocksize        51     # default value
+Spin.Spiral              F     # default value
+TimeReversalSymmetryForKpoints              T     # default value
+%block kgrid.MonkhorstPack
+    1  0  0  0.0
+    0  1  0  0.0
+    0  0  1  0.0
+%endblock kgrid.MonkhorstPack
+#:block? ProjectedDensityOfStates              F
+#:block? LocalDensityOfStates              F
+Diag.ProcessorY         8     # default value
+Diag.BlockSize        51     # default value
+Diag.Use2D              T     # default value
+Diag.UpperLower     lower     # default value
+Diag.DivideAndConquer              T     # default value
+Diag.MRRR              F     # default value
+Diag.NoExpert              F     # default value
+Diag.Algorithm     Divide-and-Conquer     # default value
+Diag.AbsTol         0.1000000000E-15     # default value
+Diag.OrFac         0.1000000000E-05     # default value
+Diag.Memory          1.000000000         # default value
+#:block? BandLines              F
+#:defined? BandLines              F
+#:block? BandPoints              F
+#:defined? BandPoints              F
+LongOutput              F     # default value
+WriteWaveFunctions              F     # default value
+#:block-line-count? MetaForce (iirrr)   0
+%block Geometry.Constraints
+  center all 0.0 0.0 1.0
+%endblock Geometry.Constraints
+%block Geometry.Constraints
+  center all 0.0 0.0 1.0
+%endblock Geometry.Constraints
+#:block? TS.BufferAtomsLeft              F
+#:defined? TS.BufferAtomsLeft              F
+#:block? TS.BufferAtomsRight              F
+#:defined? TS.BufferAtomsRight              F
+#:list? TS.Atoms.Buffer              F
+TS.HS.Save              F     # default value
+TS.DE.Save              F     # default value
+TS.onlyS              F     # default value
+TS.S.Save              F     # default value
+Spin.Spiral              F     # default value
+TimeReversalSymmetryForKpoints              T     # default value
+#:list? TS.kgrid.MonkhorstPack                                                                                                                                                                                                                                                        F
+#:block? TS.kgrid.Cutoff                                                                                                                                                                                                                                                               F
+#:defined? TS.kgrid.Cutoff                                                                                                                                                                                                                                                               F
+#:block? TS.kgrid.File                                                                                                                                                                                                                                                                 F
+#:defined? TS.kgrid.File                                                                                                                                                                                                                                                                 F
+AtomicCoordinatesFormat     Ang                                                                             
+AtomCoorFormatOut     Ang                        # default value
+LatticeConstant          1.889726125           Bohr
+# above item originally: LatticeConstant          1.000000000     Ang       
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+File.DM.Init     Graphene.DM     # default value
+DM.Init     atomic     # default value
+DM.Init.RandomStates         0     # default value
+Sonly              F     # default value
+Debug.DHSCF              F     # default value
+MeshSubDivisions         2     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+DirectPhi              F     # default value
+SimulateDoping              F     # default value
+Slab.DipoleCorrection     none     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+SingleExcitation              F     # default value
+OccupationFunction     FD     # default value
+OccupationFunction     FD     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? Grid.CellSampling              F
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+debug-folding              F     # default value
+Save.Overlap.Gradient              F     # default value
+Sonly              F     # default value
+UseDIISforDMExtrapolation              T     # default value
+UseSVDExperimental              F     # default value
+UseSVD              T     # default value
+Sonly              F     # default value
+#:list? Mesh.Sizes              F
+#:defined? MeshCutoff              T
+#:block? MeshSizes              F
+#:defined? MeshSizes              F
+#:defined? MeshCutoff              T
+XC.Use.BSC.CellXC              F     # default value
+PROCS_PER_NODE         4     # default value
+PROCS_PER_NODE         4     # default value
+Read-H-from-file              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+timing-split-scf-steps              F     # default value
+compute-forces              T     # default value
+#:list? DFTD3.Periodic              F
+Read-H-from-file              F     # default value
+WriteCoorXmol              F     # default value
+WriteCoorCerius              F     # default value
+BasisPressure         0.2000000000     GPa     # default value
+OpticalCalculation              F     # default value

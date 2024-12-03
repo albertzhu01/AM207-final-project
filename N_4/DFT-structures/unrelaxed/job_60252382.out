@@ -1,0 +1,14 @@
+Changed directory to /n/holylabs/LABS/kaxiras_lab/axzhu/projects/AM207-final-project/N_4/DFT-structures/unrelaxed.
+
+JobID: 60252382
+======
+Time: Sat Nov 30 17:09:43 EST 2024
+Running on master node: holy7c02505.rc.fas.harvard.edu
+Current directory: /n/holylabs/LABS/kaxiras_lab/axzhu/projects/AM207-final-project/N_4/DFT-structures/unrelaxed
+
+numtasks=32, numnodes=32 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -np 32 /n/kaxiras_lab/software/siesta/siesta/build-w90/Src/siesta  < bilayer.fdf > OUT
+

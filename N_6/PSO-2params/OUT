@@ -1,0 +1,3967 @@
+Siesta Version  : 5.0.0-alpha-112-g6e4f53aee-dirty
+Architecture    : ----
+Compiler version: Intel-2021.8.0.20221119
+Compiler flags  : -O2 -ip -xHost -fp-model=strict -prec-div -prec-sqrt
+PP flags        : ----
+Libraries       : ----
+Parallelisations: MPI
+GEMM3M support
+NetCDF support
+NetCDF-4 support
+
+Runtime information:
+* Directory : /n/holylabs/LABS/kaxiras_lab/axzhu/projects/AM207-final-project/N_6/PSO-2params
+* Running on 64 nodes in parallel.
+>> Start of run:  30-NOV-2024  21:14:06
+
+                           *********************** 
+                           *  WELCOME TO SIESTA  * 
+                           *********************** 
+
+reinit: Reading from standard input
+reinit: Dumping input in INPUT_TMP.69162
+************************** Dump of input data file ****************************
+#################################
+#				#
+#	Basic Information	#
+#	      			#
+#################################
+SystemName      Graphene
+SystemLabel     Graphene
+#########################################
+#					#
+#	Structural Information		#
+#					#
+#########################################
+%include structure.fdf
+#################################
+#                               #
+#       DFT Parameters          #
+#                               #
+#################################
+SolutionMethod diagon           # Method of solving system. Can change to OrderN, transiesta, etc.
+#Diag.Algorithm MRRR
+#NumberOfEigenStates -20 # this will include first 10 conduction bands
+XC.Functional   GGA
+XC.Authors      PBE
+DFTD3 true
+Spin non-polarized
+# This is causing memory issues, keep it low for now.
+Mesh.Cutoff 300 Ry              # Cut off plane waves with kinetic energy higher than this.
+MaxSCFIterations 300            # Max number of iterations in the SCF loop.
+DM.UseSaveDM true
+MinSCFIterations       3
+SCF.DM.Tolerance       0.0001
+SCF.Mixer.Weight       0.10
+SCF.Mixer.History      12
+SCF.Mix.First          true
+#################################
+#                               #
+#             Basis             #
+#                               #
+#################################
+#PAO.BasisSize   DZP
+PAO.Basis < basis.fdf
+#########################################
+#					#
+#	k-points, Bands, DOS		#
+#		  	 		#
+#########################################
+%block kgrid_Monkhorst_Pack
+   1  0  0  0.0
+   0  1  0  0.0
+   0  0  1  0.0
+%endblock kgrid_Monkhorst_Pack
+#BandLinesScale ReciprocalLatticeVectors
+#%block BandLines
+#1   0.6666666667  0.3333333333  0.0000000000  K
+#10  0.0000000000  0.0000000000  0.0000000000  Gamma
+#10  0.5000000000  0.0000000000  0.0000000000  M
+#10  0.6666666667  0.3333333333  0.0000000000  K
+#%endblock BandLines
+# Local density of states (LDOS)
+# %block LocalDensityOfStates
+# EF 8.40 8.50 eV
+# %endblock LocalDensityOfStates
+#########################################
+#                                       #
+#             Wavefunctions             #
+#                                       #
+#########################################
+#WaveFuncKPointsScale ReciprocalLatticeVectors
+#%block WaveFuncKPoints
+#0.666 0.333 0.000 from 4375 to 4378 # K wavefuncs 4375 to 4378
+#0.000 0.000 0.000 from 4375 to 4378 # Gamma wavefuncs 4375 to 4378
+#0.500 0.000 0.000 from 4375 to 4378 # M wavefuncs 4375 to 4378
+#%endblock WaveFuncKPoints
+#WriteDenchar T
+#########################################
+#                                       #
+#       Geometry Optimisation           #
+#                                       #
+#########################################
+MD.UseSaveXV true
+MD.TypeOfRun           CG                  # Conjugate Gradient
+MD.NumCGsteps          200                 # Max number of steps
+MD.MaxForceTol         0.01    eV/Ang      # 10 meV/Ang
+MD.VariableCell        false               # Don't relax cell
+MD.MaxCGDispl          0.5 Bohr            # Maximum displacement of any atom
+# Fix COM in Z direction only
+%block Geometry.Constraints
+ center all 0.0 0.0 1.0
+%endblock Geometry.Constraints
+************************** End of input data file *****************************
+
+reinit: -----------------------------------------------------------------------
+reinit: System Name: Graphene
+reinit: -----------------------------------------------------------------------
+reinit: System Label: Graphene
+reinit: -----------------------------------------------------------------------
+
+initatom: Reading input for the pseudopotentials and atomic orbitals ----------
+Species number:   1 Atomic number:    6 Label: C
+ 
+
+---- Processing specs for species: C
+Ground state valence configuration:   2s02  2p02
+Reading pseudopotential information in PSML from:
+  C.psml
+PSML file version: 1.1
+Using libxc ids:  101 130
+GGA--PBE XC_GGA_X_PBE--XC_GGA_C_PBE pb
+ Using ATOM defaults for log grid...
+PSML uuid: 297821e0-be41-11e7-6802-e1ff7dfff095
+
+---- Pseudopotential check for C 
+
+Pseudized shells:
+2s( 2.00) rc: 1.20
+2p( 2.00) rc: 1.26
+Valence configuration for ps generation: 2s:2p: Total charge:   4.000000
+For C, standard SIESTA heuristics set lmxkb to 3
+ (one more than the basis l, including polarization orbitals).
+Use PS.lmax or PS.KBprojectors blocks to override.
+C pseudopotential only contains V_ls up to l=1 -- lmxkb reset.
+
+<basis_specs>
+===============================================================================
+C                    Z=   6    Mass=  12.011        Charge= 0.99941    
+Lmxo=2 Lmxkb= 1    BasisType=split      Semic=F
+L=0  Nsemic=0  Cnfigmx=2
+          i=1  nzeta=1  polorb=0  (2s)
+            splnorm:   0.15000    
+               vcte:    132.57    
+               rinn:    4.5256    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    6.0009    
+            lambdas:    1.0000    
+L=1  Nsemic=0  Cnfigmx=2
+          i=1  nzeta=1  polorb=0  (2p)
+            splnorm:   0.15000    
+               vcte:    6.0639    
+               rinn:    6.0646    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    6.7108    
+            lambdas:    1.0000    
+L=2  Nsemic=0  Cnfigmx=3
+          i=1  nzeta=1  polorb=0  (3d)
+            splnorm:   0.15000    
+               vcte:    14.478    
+               rinn:    4.3208    
+               qcoe:    0.0000    
+               qyuk:    0.0000    
+               qwid:   0.10000E-01
+                rcs:    6.2254    
+            lambdas:    1.0000    
+-------------------------------------------------------------------------------
+L=0  Nkbl=1  erefs: 0.17977+309
+L=1  Nkbl=1  erefs: 0.17977+309
+===============================================================================
+</basis_specs>
+
+atom: Called for C                     (Z =   6)
+NOTE: C pseudopotential has channels up to l= 1
+NOTE: PAOs with higher l will be generated with V_local
+
+read_vps: Pseudopotential generation method:
+read_vps: ONCVPSP-3.Hamann's oncvpsp                        
+Valence charge in pseudo generation:    4.00000
+
+read_vps: Pseudopotential includes a core correction:
+read_vps: Pseudo-core for xc-correction
+
+xc_check: Exchange-correlation functional:
+xc_check: GGA Perdew, Burke & Ernzerhof 1996
+Got Vlocal (oncv-fit) from psml data
+Choosing vlocal chloc cutoff:  4.139772
+qtot up to nchloc:    3.99998844
+atom: Maximum radius for chlocal:    4.13977
+atom: Maximum radius for r*vlocal+2*Zval:    4.13977
+Reading KB projs from C psml data
+Using scalar-relativistic projectors in PSML file
+
+PSML: Kleinman-Bylander projectors: 
+   l= 0   rc=  1.231096   Ekb= 12.963096
+   l= 0   rc=  1.231096   Ekb=  0.771007
+   l= 1   rc=  1.294237   Ekb= -8.399923
+   l= 1   rc=  1.294237   Ekb= -1.755033
+
+PSML: Total number of  Kleinman-Bylander projectors:   8
+atom: -------------------------------------------------------------------------
+
+atom: SANKEY-TYPE ORBITALS:
+
+atom: basis set generated (by rescaling the valence charge)
+atom: for a cation of charge   0.9994
+
+SPLIT: Orbitals with angular momentum L= 0
+
+SPLIT: Basis orbitals for state 2s
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    6.099293
+                 energy =   -2.079355
+                kinetic =    1.090115
+    potential(screened) =   -3.169470
+       potential(ionic) =   -5.727963
+
+SPLIT: Orbitals with angular momentum L= 1
+
+SPLIT: Basis orbitals for state 2p
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    6.740804
+                 energy =   -1.441657
+                kinetic =    3.222058
+    potential(screened) =   -4.663715
+       potential(ionic) =   -7.206130
+*Note: V_local used for l= 2
+
+** Using vlocal for PAOs with L= 2
+
+SPLIT: Orbitals with angular momentum L= 2
+
+SPLIT: Basis orbitals for state 3d
+
+   izeta = 1
+                 lambda =    1.000000
+                     rc =    6.253707
+                 energy =    0.017329
+                kinetic =    1.197074
+    potential(screened) =   -1.179745
+       potential(ionic) =   -2.838380
+atom: Total number of Sankey-type orbitals:  9
+
+atm_pop: Valence configuration (for local Pseudopot. screening):
+ 2s( 2.00)                                                            
+ 2p( 2.00)                                                            
+ 3d( 0.00)                                                            
+Vna: chval, zval:    4.00000   4.00000
+
+Vna:  Cut-off radius for the neutral-atom potential:   6.740804
+comcore: Pseudo-core radius Rcore=  1.682861
+
+atom: _________________________________________________________________________
+
+prinput: Basis input 
+
+PAO.BasisType split     
+
+%block ChemicalSpeciesLabel
+    1    6 C                       # Species index, atomic number, species label
+%endblock ChemicalSpeciesLabel
+
+%block PAO.Basis                 # Define Basis set
+# WARNING: This information might be incomplete!
+C                     3   0.999            # Label, l-shells, ionic net charge
+ n=2   0   1                         # n, l, Nzeta 
+   6.099   
+   1.000   
+ n=2   1   1                         # n, l, Nzeta 
+   6.741   
+   1.000   
+ n=3   2   1                         # n, l, Nzeta 
+   6.254   
+   1.000   
+%endblock PAO.Basis
+
+prinput: ----------------------------------------------------------------------
+
+Dumping basis to NetCDF file C.ion.nc
+coor:   Atomic-coordinates input format  =     Cartesian coordinates
+coor:                                          (in Angstroms)
+
+siesta: WARNING: XV file not found
+
+siesta: Atomic coordinates (Bohr) and species
+siesta:      2.68394   0.00000  34.58473  1        1
+siesta:     10.73577   0.00000  34.58473  1        2
+siesta:     18.78760   0.00000  34.58473  1        3
+siesta:     26.83943   0.00000  34.58473  1        4
+siesta:     34.89126   0.00000  34.58473  1        5
+siesta:     42.94309   0.00000  34.58473  1        6
+siesta:      6.70986   2.32436  34.58473  1        7
+siesta:     14.76169   2.32436  34.58473  1        8
+siesta:     22.81352   2.32436  34.58473  1        9
+siesta:     30.86535   2.32436  34.58473  1       10
+siesta:     38.91718   2.32436  34.58473  1       11
+siesta:     46.96901   2.32436  34.58473  1       12
+siesta:     10.73577   4.64873  34.58473  1       13
+siesta:     18.78760   4.64873  34.58473  1       14
+siesta:     26.83943   4.64873  34.58473  1       15
+siesta:     34.89126   4.64873  34.58473  1       16
+siesta:     42.94309   4.64873  34.58473  1       17
+siesta:      6.70986   6.97309  34.58473  1       18
+siesta:     14.76169   6.97309  34.58473  1       19
+siesta:     22.81352   6.97309  34.58473  1       20
+siesta:     30.86535   6.97309  34.58473  1       21
+siesta:     38.91718   6.97309  34.58473  1       22
+siesta:     46.96901   6.97309  34.58473  1       23
+siesta:     10.73577   9.29745  34.58473  1       24
+siesta:     18.78760   9.29745  34.58473  1       25
+siesta:     26.83943   9.29745  34.58473  1       26
+siesta:     34.89126   9.29745  34.58473  1       27
+siesta:     42.94309   9.29745  34.58473  1       28
+siesta:     50.99492   9.29745  34.58473  1       29
+siesta:     14.76169  11.62182  34.58473  1       30
+siesta:     22.81352  11.62182  34.58473  1       31
+siesta:     30.86535  11.62182  34.58473  1       32
+siesta:     38.91718  11.62182  34.58473  1       33
+siesta:     46.96901  11.62182  34.58473  1       34
+siesta:     10.73577  13.94618  34.58473  1       35
+siesta:     18.78760  13.94618  34.58473  1       36
+siesta:     26.83943  13.94618  34.58473  1       37
+siesta:     34.89126  13.94618  34.58473  1       38
+siesta:     42.94309  13.94618  34.58473  1       39
+siesta:     50.99492  13.94618  34.58473  1       40
+siesta:     14.76169  16.27054  34.58473  1       41
+siesta:     22.81352  16.27054  34.58473  1       42
+siesta:     30.86535  16.27054  34.58473  1       43
+siesta:     38.91718  16.27054  34.58473  1       44
+siesta:     46.96901  16.27054  34.58473  1       45
+siesta:     55.02084  16.27054  34.58473  1       46
+siesta:     18.78760  18.59491  34.58473  1       47
+siesta:     26.83943  18.59491  34.58473  1       48
+siesta:     34.89126  18.59491  34.58473  1       49
+siesta:     42.94309  18.59491  34.58473  1       50
+siesta:     50.99492  18.59491  34.58473  1       51
+siesta:     14.76169  20.91927  34.58473  1       52
+siesta:     22.81352  20.91927  34.58473  1       53
+siesta:     30.86535  20.91927  34.58473  1       54
+siesta:     38.91718  20.91927  34.58473  1       55
+siesta:     46.96901  20.91927  34.58473  1       56
+siesta:     55.02084  20.91927  34.58473  1       57
+siesta:     18.78760  23.24363  34.58473  1       58
+siesta:     26.83943  23.24363  34.58473  1       59
+siesta:     34.89126  23.24363  34.58473  1       60
+siesta:     42.94309  23.24363  34.58473  1       61
+siesta:     50.99492  23.24363  34.58473  1       62
+siesta:     59.04675  23.24363  34.58473  1       63
+siesta:     22.81352  25.56799  34.58473  1       64
+siesta:     30.86535  25.56799  34.58473  1       65
+siesta:     38.91718  25.56799  34.58473  1       66
+siesta:     46.96901  25.56799  34.58473  1       67
+siesta:     55.02084  25.56799  34.58473  1       68
+siesta:     18.78760  27.89236  34.58473  1       69
+siesta:     26.83943  27.89236  34.58473  1       70
+siesta:     34.89126  27.89236  34.58473  1       71
+siesta:     42.94309  27.89236  34.58473  1       72
+siesta:     50.99492  27.89236  34.58473  1       73
+siesta:     59.04675  27.89236  34.58473  1       74
+siesta:     22.81352  30.21672  34.58473  1       75
+siesta:     30.86535  30.21672  34.58473  1       76
+siesta:     38.91718  30.21672  34.58473  1       77
+siesta:     46.96901  30.21672  34.58473  1       78
+siesta:     55.02084  30.21672  34.58473  1       79
+siesta:     63.07267  30.21672  34.58473  1       80
+siesta:     26.83943  32.54108  34.58473  1       81
+siesta:     34.89126  32.54108  34.58473  1       82
+siesta:     42.94309  32.54108  34.58473  1       83
+siesta:     50.99492  32.54108  34.58473  1       84
+siesta:     59.04675  32.54108  34.58473  1       85
+siesta:     22.81352  34.86545  34.58473  1       86
+siesta:     30.86535  34.86545  34.58473  1       87
+siesta:     38.91718  34.86545  34.58473  1       88
+siesta:     46.96901  34.86545  34.58473  1       89
+siesta:     55.02084  34.86545  34.58473  1       90
+siesta:     63.07267  34.86545  34.58473  1       91
+siesta:      5.36789   0.00000  34.58473  1       92
+siesta:     13.41972   0.00000  34.58473  1       93
+siesta:     21.47155   0.00000  34.58473  1       94
+siesta:     29.52338   0.00000  34.58473  1       95
+siesta:     37.57521   0.00000  34.58473  1       96
+siesta:     45.62704   0.00000  34.58473  1       97
+siesta:      9.39380   2.32436  34.58473  1       98
+siesta:     17.44563   2.32436  34.58473  1       99
+siesta:     25.49746   2.32436  34.58473  1      100
+siesta:     33.54929   2.32436  34.58473  1      101
+siesta:     41.60112   2.32436  34.58473  1      102
+siesta:      5.36789   4.64873  34.58473  1      103
+siesta:     13.41972   4.64873  34.58473  1      104
+siesta:     21.47155   4.64873  34.58473  1      105
+siesta:     29.52338   4.64873  34.58473  1      106
+siesta:     37.57521   4.64873  34.58473  1      107
+siesta:     45.62704   4.64873  34.58473  1      108
+siesta:      9.39380   6.97309  34.58473  1      109
+siesta:     17.44563   6.97309  34.58473  1      110
+siesta:     25.49746   6.97309  34.58473  1      111
+siesta:     33.54929   6.97309  34.58473  1      112
+siesta:     41.60112   6.97309  34.58473  1      113
+siesta:     49.65295   6.97309  34.58473  1      114
+siesta:     13.41972   9.29745  34.58473  1      115
+siesta:     21.47155   9.29745  34.58473  1      116
+siesta:     29.52338   9.29745  34.58473  1      117
+siesta:     37.57521   9.29745  34.58473  1      118
+siesta:     45.62704   9.29745  34.58473  1      119
+siesta:      9.39380  11.62182  34.58473  1      120
+siesta:     17.44563  11.62182  34.58473  1      121
+siesta:     25.49746  11.62182  34.58473  1      122
+siesta:     33.54929  11.62182  34.58473  1      123
+siesta:     41.60112  11.62182  34.58473  1      124
+siesta:     49.65295  11.62182  34.58473  1      125
+siesta:     13.41972  13.94618  34.58473  1      126
+siesta:     21.47155  13.94618  34.58473  1      127
+siesta:     29.52338  13.94618  34.58473  1      128
+siesta:     37.57521  13.94618  34.58473  1      129
+siesta:     45.62704  13.94618  34.58473  1      130
+siesta:     53.67887  13.94618  34.58473  1      131
+siesta:     17.44563  16.27054  34.58473  1      132
+siesta:     25.49746  16.27054  34.58473  1      133
+siesta:     33.54929  16.27054  34.58473  1      134
+siesta:     41.60112  16.27054  34.58473  1      135
+siesta:     49.65295  16.27054  34.58473  1      136
+siesta:     13.41972  18.59491  34.58473  1      137
+siesta:     21.47155  18.59491  34.58473  1      138
+siesta:     29.52338  18.59491  34.58473  1      139
+siesta:     37.57521  18.59491  34.58473  1      140
+siesta:     45.62704  18.59491  34.58473  1      141
+siesta:     53.67887  18.59491  34.58473  1      142
+siesta:     17.44563  20.91927  34.58473  1      143
+siesta:     25.49746  20.91927  34.58473  1      144
+siesta:     33.54929  20.91927  34.58473  1      145
+siesta:     41.60112  20.91927  34.58473  1      146
+siesta:     49.65295  20.91927  34.58473  1      147
+siesta:     57.70478  20.91927  34.58473  1      148
+siesta:     21.47155  23.24363  34.58473  1      149
+siesta:     29.52338  23.24363  34.58473  1      150
+siesta:     37.57521  23.24363  34.58473  1      151
+siesta:     45.62704  23.24363  34.58473  1      152
+siesta:     53.67887  23.24363  34.58473  1      153
+siesta:     17.44563  25.56799  34.58473  1      154
+siesta:     25.49746  25.56799  34.58473  1      155
+siesta:     33.54929  25.56799  34.58473  1      156
+siesta:     41.60112  25.56799  34.58473  1      157
+siesta:     49.65295  25.56799  34.58473  1      158
+siesta:     57.70478  25.56799  34.58473  1      159
+siesta:     21.47155  27.89236  34.58473  1      160
+siesta:     29.52338  27.89236  34.58473  1      161
+siesta:     37.57521  27.89236  34.58473  1      162
+siesta:     45.62704  27.89236  34.58473  1      163
+siesta:     53.67887  27.89236  34.58473  1      164
+siesta:     61.73070  27.89236  34.58473  1      165
+siesta:     25.49746  30.21672  34.58473  1      166
+siesta:     33.54929  30.21672  34.58473  1      167
+siesta:     41.60112  30.21672  34.58473  1      168
+siesta:     49.65295  30.21672  34.58473  1      169
+siesta:     57.70478  30.21672  34.58473  1      170
+siesta:     21.47155  32.54108  34.58473  1      171
+siesta:     29.52338  32.54108  34.58473  1      172
+siesta:     37.57521  32.54108  34.58473  1      173
+siesta:     45.62704  32.54108  34.58473  1      174
+siesta:     53.67887  32.54108  34.58473  1      175
+siesta:     61.73070  32.54108  34.58473  1      176
+siesta:     25.49746  34.86545  34.58473  1      177
+siesta:     33.54929  34.86545  34.58473  1      178
+siesta:     41.60112  34.86545  34.58473  1      179
+siesta:     49.65295  34.86545  34.58473  1      180
+siesta:     57.70478  34.86545  34.58473  1      181
+siesta:     65.75661  34.86545  34.58473  1      182
+siesta:      6.91632   1.60917  41.04746  1      183
+siesta:     14.92390   0.76627  41.04746  1      184
+siesta:     22.93149  -0.07663  41.04746  1      185
+siesta:     30.93908  -0.91953  41.04746  1      186
+siesta:     38.94667  -1.76243  41.04746  1      187
+siesta:      3.15585   4.34222  41.04746  1      188
+siesta:     11.16343   3.49932  41.04746  1      189
+siesta:     19.17102   2.65642  41.04746  1      190
+siesta:     27.17861   1.81351  41.04746  1      191
+siesta:     35.18620   0.97061  41.04746  1      192
+siesta:     43.19379   0.12771  41.04746  1      193
+siesta:      7.40296   6.23236  41.04746  1      194
+siesta:     15.41055   5.38946  41.04746  1      195
+siesta:     23.41814   4.54656  41.04746  1      196
+siesta:     31.42573   3.70366  41.04746  1      197
+siesta:     39.43332   2.86075  41.04746  1      198
+siesta:     11.65008   8.12250  41.04746  1      199
+siesta:     19.65767   7.27960  41.04746  1      200
+siesta:     27.66526   6.43670  41.04746  1      201
+siesta:     35.67285   5.59380  41.04746  1      202
+siesta:     43.68044   4.75090  41.04746  1      203
+siesta:      7.88961  10.85554  41.04746  1      204
+siesta:     15.89720  10.01264  41.04746  1      205
+siesta:     23.90479   9.16974  41.04746  1      206
+siesta:     31.91238   8.32684  41.04746  1      207
+siesta:     39.91997   7.48394  41.04746  1      208
+siesta:     47.92756   6.64104  41.04746  1      209
+siesta:     12.13673  12.74568  41.04746  1      210
+siesta:     20.14432  11.90278  41.04746  1      211
+siesta:     28.15191  11.05988  41.04746  1      212
+siesta:     36.15950  10.21698  41.04746  1      213
+siesta:     44.16709   9.37408  41.04746  1      214
+siesta:     16.38385  14.63583  41.04746  1      215
+siesta:     24.39144  13.79292  41.04746  1      216
+siesta:     32.39903  12.95002  41.04746  1      217
+siesta:     40.40662  12.10712  41.04746  1      218
+siesta:     48.41421  11.26422  41.04746  1      219
+siesta:     12.62338  17.36887  41.04746  1      220
+siesta:     20.63097  16.52597  41.04746  1      221
+siesta:     28.63856  15.68307  41.04746  1      222
+siesta:     36.64615  14.84016  41.04746  1      223
+siesta:     44.65374  13.99726  41.04746  1      224
+siesta:     52.66133  13.15436  41.04746  1      225
+siesta:     16.87050  19.25901  41.04746  1      226
+siesta:     24.87809  18.41611  41.04746  1      227
+siesta:     32.88568  17.57321  41.04746  1      228
+siesta:     40.89327  16.73031  41.04746  1      229
+siesta:     48.90086  15.88741  41.04746  1      230
+siesta:     21.11762  21.14915  41.04746  1      231
+siesta:     29.12521  20.30625  41.04746  1      232
+siesta:     37.13280  19.46335  41.04746  1      233
+siesta:     45.14039  18.62045  41.04746  1      234
+siesta:     53.14798  17.77755  41.04746  1      235
+siesta:     17.35715  23.88219  41.04746  1      236
+siesta:     25.36474  23.03929  41.04746  1      237
+siesta:     33.37233  22.19639  41.04746  1      238
+siesta:     41.37992  21.35349  41.04746  1      239
+siesta:     49.38751  20.51059  41.04746  1      240
+siesta:     57.39510  19.66769  41.04746  1      241
+siesta:     21.60427  25.77233  41.04746  1      242
+siesta:     29.61186  24.92943  41.04746  1      243
+siesta:     37.61945  24.08653  41.04746  1      244
+siesta:     45.62704  23.24363  41.04746  1      245
+siesta:     53.63463  22.40073  41.04746  1      246
+siesta:     25.85139  27.66248  41.04746  1      247
+siesta:     33.85898  26.81957  41.04746  1      248
+siesta:     41.86657  25.97667  41.04746  1      249
+siesta:     49.87416  25.13377  41.04746  1      250
+siesta:     57.88175  24.29087  41.04746  1      251
+siesta:     22.09092  30.39552  41.04746  1      252
+siesta:     30.09851  29.55262  41.04746  1      253
+siesta:     38.10610  28.70972  41.04746  1      254
+siesta:     46.11369  27.86682  41.04746  1      255
+siesta:     54.12128  27.02391  41.04746  1      256
+siesta:     62.12886  26.18101  41.04746  1      257
+siesta:     26.33804  32.28566  41.04746  1      258
+siesta:     34.34563  31.44276  41.04746  1      259
+siesta:     42.35322  30.59986  41.04746  1      260
+siesta:     50.36081  29.75696  41.04746  1      261
+siesta:     58.36839  28.91406  41.04746  1      262
+siesta:     30.58516  34.17580  41.04746  1      263
+siesta:     38.59275  33.33290  41.04746  1      264
+siesta:     46.60034  32.49000  41.04746  1      265
+siesta:     54.60792  31.64710  41.04746  1      266
+siesta:     62.61551  30.80420  41.04746  1      267
+siesta:     26.82469  36.90884  41.04746  1      268
+siesta:     34.83228  36.06594  41.04746  1      269
+siesta:     42.83987  35.22304  41.04746  1      270
+siesta:     50.84745  34.38014  41.04746  1      271
+siesta:     58.85504  33.53724  41.04746  1      272
+siesta:     66.86263  32.69434  41.04746  1      273
+siesta:      1.57792   2.17111  41.04746  1      274
+siesta:      9.58551   1.32821  41.04746  1      275
+siesta:     17.59310   0.48531  41.04746  1      276
+siesta:     25.60069  -0.35759  41.04746  1      277
+siesta:     33.60828  -1.20050  41.04746  1      278
+siesta:     41.61587  -2.04340  41.04746  1      279
+siesta:      5.82504   4.06125  41.04746  1      280
+siesta:     13.83263   3.21835  41.04746  1      281
+siesta:     21.84022   2.37545  41.04746  1      282
+siesta:     29.84781   1.53255  41.04746  1      283
+siesta:     37.85540   0.68965  41.04746  1      284
+siesta:     10.07216   5.95139  41.04746  1      285
+siesta:     18.07975   5.10849  41.04746  1      286
+siesta:     26.08734   4.26559  41.04746  1      287
+siesta:     34.09493   3.42269  41.04746  1      288
+siesta:     42.10252   2.57979  41.04746  1      289
+siesta:      6.31169   8.68443  41.04746  1      290
+siesta:     14.31928   7.84153  41.04746  1      291
+siesta:     22.32687   6.99863  41.04746  1      292
+siesta:     30.33446   6.15573  41.04746  1      293
+siesta:     38.34205   5.31283  41.04746  1      294
+siesta:     46.34964   4.46993  41.04746  1      295
+siesta:     10.55881  10.57458  41.04746  1      296
+siesta:     18.56640   9.73167  41.04746  1      297
+siesta:     26.57399   8.88877  41.04746  1      298
+siesta:     34.58158   8.04587  41.04746  1      299
+siesta:     42.58917   7.20297  41.04746  1      300
+siesta:     14.80593  12.46472  41.04746  1      301
+siesta:     22.81352  11.62182  41.04746  1      302
+siesta:     30.82111  10.77891  41.04746  1      303
+siesta:     38.82870   9.93601  41.04746  1      304
+siesta:     46.83629   9.09311  41.04746  1      305
+siesta:     11.04546  15.19776  41.04746  1      306
+siesta:     19.05305  14.35486  41.04746  1      307
+siesta:     27.06064  13.51196  41.04746  1      308
+siesta:     35.06823  12.66906  41.04746  1      309
+siesta:     43.07582  11.82616  41.04746  1      310
+siesta:     51.08341  10.98325  41.04746  1      311
+siesta:     15.29258  17.08790  41.04746  1      312
+siesta:     23.30017  16.24500  41.04746  1      313
+siesta:     31.30776  15.40210  41.04746  1      314
+siesta:     39.31535  14.55920  41.04746  1      315
+siesta:     47.32294  13.71630  41.04746  1      316
+siesta:     19.53970  18.97804  41.04746  1      317
+siesta:     27.54729  18.13514  41.04746  1      318
+siesta:     35.55488  17.29224  41.04746  1      319
+siesta:     43.56247  16.44934  41.04746  1      320
+siesta:     51.57005  15.60644  41.04746  1      321
+siesta:     15.77923  21.71108  41.04746  1      322
+siesta:     23.78682  20.86818  41.04746  1      323
+siesta:     31.79441  20.02528  41.04746  1      324
+siesta:     39.80200  19.18238  41.04746  1      325
+siesta:     47.80958  18.33948  41.04746  1      326
+siesta:     55.81717  17.49658  41.04746  1      327
+siesta:     20.02635  23.60123  41.04746  1      328
+siesta:     28.03394  22.75832  41.04746  1      329
+siesta:     36.04153  21.91542  41.04746  1      330
+siesta:     44.04911  21.07252  41.04746  1      331
+siesta:     52.05670  20.22962  41.04746  1      332
+siesta:     24.27347  25.49137  41.04746  1      333
+siesta:     32.28106  24.64847  41.04746  1      334
+siesta:     40.28864  23.80557  41.04746  1      335
+siesta:     48.29623  22.96266  41.04746  1      336
+siesta:     56.30382  22.11976  41.04746  1      337
+siesta:     20.51300  28.22441  41.04746  1      338
+siesta:     28.52058  27.38151  41.04746  1      339
+siesta:     36.52817  26.53861  41.04746  1      340
+siesta:     44.53576  25.69571  41.04746  1      341
+siesta:     52.54335  24.85281  41.04746  1      342
+siesta:     60.55094  24.00990  41.04746  1      343
+siesta:     24.76011  30.11455  41.04746  1      344
+siesta:     32.76770  29.27165  41.04746  1      345
+siesta:     40.77529  28.42875  41.04746  1      346
+siesta:     48.78288  27.58585  41.04746  1      347
+siesta:     56.79047  26.74295  41.04746  1      348
+siesta:     29.00723  32.00469  41.04746  1      349
+siesta:     37.01482  31.16179  41.04746  1      350
+siesta:     45.02241  30.31889  41.04746  1      351
+siesta:     53.03000  29.47599  41.04746  1      352
+siesta:     61.03759  28.63309  41.04746  1      353
+siesta:     25.24676  34.73773  41.04746  1      354
+siesta:     33.25435  33.89483  41.04746  1      355
+siesta:     41.26194  33.05193  41.04746  1      356
+siesta:     49.26953  32.20903  41.04746  1      357
+siesta:     57.27712  31.36613  41.04746  1      358
+siesta:     65.28471  30.52323  41.04746  1      359
+siesta:     29.49388  36.62788  41.04746  1      360
+siesta:     37.50147  35.78498  41.04746  1      361
+siesta:     45.50906  34.94207  41.04746  1      362
+siesta:     53.51665  34.09917  41.04746  1      363
+siesta:     61.52424  33.25627  41.04746  1      364
+
+siesta: System type = slab      
+
+initatomlists: Number of atoms, orbitals, and projectors:    364  3276  2912
+
+siesta: ******************** Simulation parameters ****************************
+siesta:
+siesta: The following are some of the parameters of the simulation.
+siesta: A complete list of the parameters used, including default values,
+siesta: can be found in file out.fdf
+siesta:
+redata: Spin configuration                          = none
+redata: Number of spin components                   = 1
+redata: Time-Reversal Symmetry                      = T
+redata: Spin spiral                                 = F
+redata: Long output                                 =   F
+redata: Number of Atomic Species                    =        1
+redata: Charge density info will appear in .RHO file
+redata: Write Mulliken Pop.                         = NO
+redata: Matel table size (NRTAB)                    =     1024
+redata: Mesh Cutoff                                 =   300.0000 Ry
+redata: Net charge of the system                    =     0.0000 |e|
+redata: Min. number of SCF Iter                     =        3
+redata: Max. number of SCF Iter                     =      300
+redata: SCF convergence failure will abort job
+redata: SCF mix quantity                            = Hamiltonian
+redata: Mix DM or H after convergence               =   F
+redata: Recompute H after scf cycle                 =   F
+redata: Mix DM in first SCF step                    =   T
+redata: Write Pulay info on disk                    =   F
+redata: New DM Occupancy tolerance                  = 0.000000000001
+redata: No kicks to SCF
+redata: DM Mixing Weight for Kicks                  =     0.5000
+redata: Require Harris convergence for SCF          =   F
+redata: Harris energy tolerance for SCF             =     0.000100 eV
+redata: Require DM convergence for SCF              =   T
+redata: DM tolerance for SCF                        =     0.000100
+redata: Require EDM convergence for SCF             =   F
+redata: EDM tolerance for SCF                       =     0.001000 eV
+redata: Require H convergence for SCF               =   T
+redata: Hamiltonian tolerance for SCF               =     0.001000 eV
+redata: Require (free) Energy convergence for SCF   =   F
+redata: (free) Energy tolerance for SCF             =     0.000100 eV
+redata: Using DFT-D3 dispersion                     =   T
+redata: Using Saved Data (generic)                  =   F
+redata: Use continuation files for DM               =   T
+redata: Neglect nonoverlap interactions             =   F
+redata: Method of Calculation                       = Diagonalization
+redata: Electronic Temperature                      =   299.9863 K
+redata: Fix the spin of the system                  =   F
+redata: Max. number of TDED Iter                    =        1
+redata: Number of TDED substeps                     =        3
+redata: Dynamics option                             = CG coord. optimization
+redata: Variable cell                               =   F
+redata: Use continuation files for CG               =   F
+redata: Max atomic displ per move                   =     0.2646 Ang
+redata: Maximum number of optimization moves        =      200
+redata: Force tolerance                             =     0.0100 eV/Ang
+mix.SCF: Pulay mixing                            = Pulay
+mix.SCF:    Variant                              = stable
+mix.SCF:    History steps                        = 12
+mix.SCF:    Linear mixing weight                 =     0.100000
+mix.SCF:    Mixing weight                        =     0.100000
+mix.SCF:    SVD condition                        = 0.1000E-07
+redata: Save all siesta data in one NC              =   F
+redata: ***********************************************************************
+
+%block SCF.Mixers
+  Pulay
+%endblock SCF.Mixers
+
+%block SCF.Mixer.Pulay
+  # Mixing method
+  method pulay
+  variant stable
+
+  # Mixing options
+  weight 0.1000
+  weight.linear 0.1000
+  history 12
+%endblock SCF.Mixer.Pulay
+ 
+DFT-D3: loading default parameters for functional PBE.
+DM_history_depth set to one: no extrapolation allowed by default for geometry relaxation
+Size of DM history Fstack: 1
+Total number of electrons:  1456.000000
+Total ionic charge:  1456.000000
+
+* ProcessorY, Blocksize:    8  51
+
+
+* Orbital distribution balance (max,min):    63    51
+
+ Kpoints in:            1 . Kpoints trimmed:            1
+
+siesta: k-grid: Number of k-points = 1
+siesta: k-points from Monkhorst-Pack grid
+siesta: k-cutoff (effective) =    11.733 Ang
+siesta: k-point supercell and displacements
+siesta: k-grid:     1     0     0      0.000
+siesta: k-grid:     0     1     0      0.000
+siesta: k-grid:     0     0     1      0.000
+ 
+diag: Algorithm                                     = D&C
+diag: Parallel over k                               =   F
+diag: Use parallel 2D distribution                  =   T
+diag: Parallel block-size                           = 51
+diag: Parallel distribution                         =     8 x     8
+diag: Used triangular part                          = Lower
+diag: Absolute tolerance                            =  0.100E-15
+diag: Orthogonalization factor                      =  0.100E-05
+diag: Memory factor                                 =  1.0000
+ 
+siesta: Constraint v=[  0.00000,  0.00000,  1.00000] (364): center-dir
+  [ 1 -- 364 ]
+ 
+ 
+ts: **************************************************************
+ts: Save H and S matrices                           =    F
+ts: Save DM and EDM matrices                        =    F
+ts: Only save the overlap matrix S                  =    F
+ts: **************************************************************
+ 
+************************ Begin: TS CHECKS AND WARNINGS ************************
+************************ End: TS CHECKS AND WARNINGS **************************
+
+
+                     ====================================
+                        Begin CG opt. move =      0
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 0
+  <sparsity:sparsity for geom step 0
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60234, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60234, refcount: 1>
+refcount: 1>
+new_DM -- step:     1
+Initializing Density Matrix...
+ 
+Attempting to read DM from file... Failed...
+DM filled with atomic data:
+<dSpData2D:DM initialized from atoms
+  <sparsity:sparsity for geom step 0
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60234, refcount: 8>
+  <dData2D:DM n=60234 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+stepf: Fermi-Dirac step function
+
+siesta: Program's energy decomposition (eV):
+siesta: Ebs     =    -21273.583899
+siesta: Eions   =    102706.861614
+siesta: Ena     =     22679.157403
+siesta: Ekin    =     40113.203484
+siesta: Enl     =     -1806.181942
+siesta: Eso     =         0.000000
+siesta: Edftu   =         0.000000
+siesta: DEna    =      3079.477543
+siesta: DUscf   =       197.094924
+siesta: DUext   =         0.000000
+siesta: Ex      =    -19188.444156
+siesta: Ec      =     -1850.570786
+siesta: Exc     =    -21039.014942
+siesta: EbV     =         0.000000
+siesta: eta*DQ  =         0.000000
+siesta: Emadel  =         0.000000
+siesta: Emeta   =         0.000000
+siesta: Emolmec =         0.000000
+siesta: Ekinion =         0.000000
+siesta: Eharris =    -60922.698062
+siesta: Etot    =    -59483.125145
+siesta: FreeEng =    -59483.125145
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -60922.698062   -59483.125145   -59483.125145  1.203909 -1.353720  4.737841
+timer: Routine,Calls,Time,% = IterSCF        1       3.584  34.39
+   scf:    2   -59499.177526   -59491.257081   -59491.257081  0.008913 -1.769945  3.992283
+   scf:    3   -59528.733085   -59512.562379   -59512.562379  0.047884 -3.722170  0.287907
+   scf:    4   -59513.355915   -59513.037900   -59513.037900  0.008051 -4.026216  0.168736
+   scf:    5   -59512.954082   -59513.036694   -59513.036694  0.002426 -3.873118  0.173509
+   scf:    6   -59513.095099   -59513.071060   -59513.071060  0.000985 -3.931153  0.061809
+   scf:    7   -59513.078680   -59513.075912   -59513.075912  0.000777 -3.962806  0.007351
+   scf:    8   -59513.075878   -59513.075925   -59513.075925  0.000182 -3.955726  0.004175
+   scf:    9   -59513.075961   -59513.075965   -59513.075965  0.000138 -3.960875  0.003374
+   scf:   10   -59513.075998   -59513.075984   -59513.075984  0.000050 -3.958682  0.000386
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000502940
+max |H_out - H_in|      (eV) :     0.0003856779
+SCF cycle converged after 10 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.3432
+
+siesta: E_KS - E_eggbox =    -59549.3432
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000    0.000000   -0.019381
+----------------------------------------
+   Max    0.032135
+   Res    0.010368    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.032135    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.76      -25.76       -4.86        0.00        0.00        0.00
+(Free)E + p*V (eV/cell)   -59325.5787
+Target enthalpy (eV/cell)   -59549.3432
+
+                     ====================================
+                        Begin CG opt. move =      1
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 1
+  <sparsity:sparsity for geom step 1
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60124, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60124, refcount: 1>
+refcount: 1>
+new_DM -- step:     2
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 1
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60124, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60124 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.323411   -59549.016424   -59549.016424  0.011331 -3.844923  0.219339
+   scf:    2   -59547.676996   -59548.600565   -59548.600565  0.006716 -3.889451  1.320895
+   scf:    3   -59549.089673   -59549.031342   -59549.031342  0.005747 -3.846543  0.019714
+   scf:    4   -59549.034215   -59549.032861   -59549.032861  0.000209 -3.846405  0.013100
+   scf:    5   -59549.034342   -59549.033672   -59549.033672  0.000261 -3.846702  0.003243
+   scf:    6   -59549.033770   -59549.033732   -59549.033732  0.000082 -3.847223  0.004125
+   scf:    7   -59549.033710   -59549.033729   -59549.033729  0.000045 -3.847093  0.005356
+   scf:    8   -59549.033738   -59549.033736   -59549.033736  0.000021 -3.847177  0.000312
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000211993
+max |H_out - H_in|      (eV) :     0.0003118393
+SCF cycle converged after 8 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59548.8877
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000002   -0.000003   -0.011301
+----------------------------------------
+   Max    0.960520
+   Res    0.340794    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.960520    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.87      -25.99       -4.67       -0.00        0.00        0.08
+(Free)E + p*V (eV/cell)   -59324.5364
+Target enthalpy (eV/cell)   -59548.8877
+
+                     ====================================
+                        Begin CG opt. move =      2
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 2
+  <sparsity:sparsity for geom step 2
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60189, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60189, refcount: 1>
+refcount: 1>
+new_DM -- step:     3
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 2
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60189, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60189 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59548.939541   -59549.206477   -59549.206477  0.010372 -3.970572  0.073418
+   scf:    2   -59548.967719   -59549.134154   -59549.134154  0.002483 -3.970875  0.437614
+   scf:    3   -59549.219984   -59549.211100   -59549.211100  0.002045 -3.970054  0.017686
+   scf:    4   -59549.213868   -59549.212578   -59549.212578  0.000243 -3.970329  0.009967
+   scf:    5   -59549.213363   -59549.213000   -59549.213000  0.000177 -3.970015  0.003201
+   scf:    6   -59549.213099   -59549.213057   -59549.213057  0.000080 -3.969602  0.000894
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000802825
+max |H_out - H_in|      (eV) :     0.0008941397
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.3469
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000   -0.000000   -0.019087
+----------------------------------------
+   Max    0.068475
+   Res    0.026352    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.068475    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.76      -25.77       -4.85       -0.00       -0.00        0.01
+(Free)E + p*V (eV/cell)   -59325.5746
+Target enthalpy (eV/cell)   -59549.3469
+
+cgvc: Finished line minimization    1.  Mean atomic displacement =    0.0022
+
+                     ====================================
+                        Begin CG opt. move =      3
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 3
+  <sparsity:sparsity for geom step 3
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60171, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60171, refcount: 1>
+refcount: 1>
+new_DM -- step:     4
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 3
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60171, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60171 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.408056   -59549.366772   -59549.366772  0.000169 -3.977821  0.005847
+   scf:    2   -59549.366268   -59549.366622   -59549.366622  0.000315 -3.977711  0.023227
+   scf:    3   -59549.366811   -59549.366783   -59549.366783  0.000253 -3.977792  0.000391
+   scf:    4   -59549.366784   -59549.366784   -59549.366784  0.000008 -3.977788  0.000155
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000075530
+max |H_out - H_in|      (eV) :     0.0001551560
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.3538
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000000    0.000000   -0.014418
+----------------------------------------
+   Max    0.064326
+   Res    0.024763    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.064326    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.77      -25.78       -4.83       -0.00        0.00        0.01
+(Free)E + p*V (eV/cell)   -59325.6133
+Target enthalpy (eV/cell)   -59549.3538
+
+                     ====================================
+                        Begin CG opt. move =      4
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 4
+  <sparsity:sparsity for geom step 4
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60171, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60171, refcount: 1>
+refcount: 1>
+new_DM -- step:     5
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 4
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60171, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60171 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.449583   -59549.384679   -59549.384679  0.000270 -3.991164  0.004875
+   scf:    2   -59549.384103   -59549.384509   -59549.384509  0.000207 -3.990728  0.025157
+   scf:    3   -59549.384723   -59549.384694   -59549.384694  0.000166 -3.991088  0.000649
+   scf:    4   -59549.384695   -59549.384695   -59549.384695  0.000005 -3.991096  0.000292
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000052150
+max |H_out - H_in|      (eV) :     0.0002923142
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.3639
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001    0.000000   -0.014226
+----------------------------------------
+   Max    0.057987
+   Res    0.022328    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.057987    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.77      -25.78       -4.80        0.00       -0.00        0.01
+(Free)E + p*V (eV/cell)   -59325.6756
+Target enthalpy (eV/cell)   -59549.3639
+
+                     ====================================
+                        Begin CG opt. move =      5
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 5
+  <sparsity:sparsity for geom step 5
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60127, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60127, refcount: 1>
+refcount: 1>
+new_DM -- step:     6
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 5
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60127, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60127 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.512256   -59549.411365   -59549.411365  0.000433 -4.007783  0.008214
+   scf:    2   -59549.409821   -59549.410906   -59549.410906  0.000352 -4.007226  0.042334
+   scf:    3   -59549.411479   -59549.411402   -59549.411402  0.000284 -4.007670  0.000979
+   scf:    4   -59549.411406   -59549.411404   -59549.411404  0.000009 -4.007663  0.000446
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000092591
+max |H_out - H_in|      (eV) :     0.0004457500
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.3782
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000   -0.000001   -0.011920
+----------------------------------------
+   Max    0.047814
+   Res    0.018631    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.047814    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.78      -25.79       -4.77       -0.00       -0.00        0.01
+(Free)E + p*V (eV/cell)   -59325.7667
+Target enthalpy (eV/cell)   -59549.3782
+
+                     ====================================
+                        Begin CG opt. move =      6
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 6
+  <sparsity:sparsity for geom step 6
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60126, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60126, refcount: 1>
+refcount: 1>
+new_DM -- step:     7
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 6
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60126, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60126 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.602861   -59549.448846   -59549.448846  0.000692 -4.019159  0.014790
+   scf:    2   -59549.444273   -59549.447479   -59549.447479  0.000545 -4.018318  0.077708
+   scf:    3   -59549.449165   -59549.448947   -59549.448947  0.000440 -4.018986  0.001670
+   scf:    4   -59549.448958   -59549.448953   -59549.448953  0.000016 -4.018970  0.000740
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000162896
+max |H_out - H_in|      (eV) :     0.0007402940
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.3960
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000001    0.000001   -0.011294
+----------------------------------------
+   Max    0.031666
+   Res    0.013700    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.031666    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.80      -25.80       -4.70        0.00       -0.00        0.00
+(Free)E + p*V (eV/cell)   -59325.9279
+Target enthalpy (eV/cell)   -59549.3960
+
+                     ====================================
+                        Begin CG opt. move =      7
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 7
+  <sparsity:sparsity for geom step 7
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60068, refcount: 7>
+  <dData1D:(new from dSpData1D) n=60068, refcount: 1>
+refcount: 1>
+new_DM -- step:     8
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 7
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=60068, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=60068 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.723948   -59549.495867   -59549.495867  0.001106 -3.794466  0.027750
+   scf:    2   -59549.481005   -59549.491387   -59549.491387  0.000949 -3.793227  0.148140
+   scf:    3   -59549.496841   -59549.496156   -59549.496156  0.000801 -3.794194  0.002807
+   scf:    4   -59549.496189   -59549.496175   -59549.496175  0.000030 -3.794156  0.001206
+   scf:    5   -59549.496183   -59549.496180   -59549.496180  0.000013 -3.794234  0.000586
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000129046
+max |H_out - H_in|      (eV) :     0.0005862281
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4117
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001   -0.000002   -0.018064
+----------------------------------------
+   Max    0.038288
+   Res    0.012128    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.038288    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.82      -25.82       -4.60        0.00       -0.00       -0.00
+(Free)E + p*V (eV/cell)   -59326.1789
+Target enthalpy (eV/cell)   -59549.4117
+
+                     ====================================
+                        Begin CG opt. move =      8
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 8
+  <sparsity:sparsity for geom step 8
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59720, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59720, refcount: 1>
+refcount: 1>
+new_DM -- step:     9
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 8
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59720, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59720 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     232
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.859011   -59549.538778   -59549.538778  0.012312 -3.825767  0.052979
+   scf:    2   -59549.485938   -59549.522736   -59549.522736  0.001700 -3.823790  0.289140
+   scf:    3   -59549.542031   -59549.539700   -59549.539700  0.001443 -3.825243  0.005340
+   scf:    4   -59549.539818   -59549.539770   -59549.539770  0.000058 -3.825109  0.002078
+   scf:    5   -59549.539793   -59549.539783   -59549.539783  0.000022 -3.825230  0.000983
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000223801
+max |H_out - H_in|      (eV) :     0.0009827022
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     232
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4057
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000000    0.000001   -0.000097
+----------------------------------------
+   Max    0.078967
+   Res    0.025105    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.078967    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.86      -25.85       -4.45        0.00       -0.00       -0.01
+(Free)E + p*V (eV/cell)   -59326.5437
+Target enthalpy (eV/cell)   -59549.4057
+
+                     ====================================
+                        Begin CG opt. move =      9
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 9
+  <sparsity:sparsity for geom step 9
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59943, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59943, refcount: 1>
+refcount: 1>
+new_DM -- step:    10
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 9
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59943, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59943 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.118580   -59549.324803   -59549.324803  0.001758 -3.805092  0.042555
+   scf:    2   -59549.291739   -59549.314750   -59549.314750  0.001357 -3.807398  0.235014
+   scf:    3   -59549.326800   -59549.325367   -59549.325367  0.001154 -3.805466  0.004444
+   scf:    4   -59549.325447   -59549.325414   -59549.325414  0.000043 -3.805563  0.001664
+   scf:    5   -59549.325429   -59549.325423   -59549.325423  0.000019 -3.805454  0.000798
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000189329
+max |H_out - H_in|      (eV) :     0.0007979341
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4140
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000004   -0.000004   -0.014379
+----------------------------------------
+   Max    0.044421
+   Res    0.015451    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.044421    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.83      -25.83       -4.55        0.00       -0.00       -0.00
+(Free)E + p*V (eV/cell)   -59326.3059
+Target enthalpy (eV/cell)   -59549.4140
+
+cgvc: Finished line minimization    2.  Mean atomic displacement =    0.0420
+
+                     ====================================
+                        Begin CG opt. move =     10
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 10
+  <sparsity:sparsity for geom step 10
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59904, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59904, refcount: 1>
+refcount: 1>
+new_DM -- step:    11
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 10
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59904, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59904 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     122     231
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.724828   -59549.300494   -59549.300494  0.013687 -3.944826  0.366002
+   scf:    2   -59547.324331   -59548.717994   -59548.717994  0.022907 -3.958940  1.400685
+   scf:    3   -59549.455572   -59549.352304   -59549.352304  0.018347 -3.944871  0.036621
+   scf:    4   -59549.356664   -59549.354871   -59549.354871  0.000676 -3.944751  0.012612
+   scf:    5   -59549.356198   -59549.355641   -59549.355641  0.000366 -3.944988  0.007035
+   scf:    6   -59549.356083   -59549.355894   -59549.355894  0.000153 -3.945727  0.002267
+   scf:    7   -59549.355917   -59549.355906   -59549.355906  0.000033 -3.945870  0.001016
+   scf:    8   -59549.355914   -59549.355911   -59549.355911  0.000025 -3.945985  0.000359
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000251755
+max |H_out - H_in|      (eV) :     0.0003591220
+SCF cycle converged after 8 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     122     231
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.0967
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001   -0.000019    0.017649
+----------------------------------------
+   Max    0.908401
+   Res    0.256918    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.908401    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.76      -26.12       -4.27        0.00        0.00        0.25
+(Free)E + p*V (eV/cell)   -59326.2521
+Target enthalpy (eV/cell)   -59549.0967
+
+                     ====================================
+                        Begin CG opt. move =     11
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 11
+  <sparsity:sparsity for geom step 11
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59872, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59872, refcount: 1>
+refcount: 1>
+new_DM -- step:    12
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 11
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59872, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59872 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59548.605762   -59549.131899   -59549.131899  0.007523 -3.821405  0.379772
+   scf:    2   -59546.432381   -59548.316747   -59548.316747  0.021936 -3.845807  1.546882
+   scf:    3   -59549.306398   -59549.182840   -59549.182840  0.017860 -3.820717  0.047609
+   scf:    4   -59549.187590   -59549.185761   -59549.185761  0.000864 -3.820994  0.011599
+   scf:    5   -59549.186889   -59549.186417   -59549.186417  0.000335 -3.820872  0.006432
+   scf:    6   -59549.186779   -59549.186620   -59549.186620  0.000130 -3.820286  0.001865
+   scf:    7   -59549.186643   -59549.186633   -59549.186633  0.000029 -3.820127  0.000935
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000288205
+max |H_out - H_in|      (eV) :     0.0009350748
+SCF cycle converged after 7 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4184
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001   -0.000000   -0.010819
+----------------------------------------
+   Max    0.071278
+   Res    0.023104    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.071278    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.82      -25.86       -4.52       -0.00       -0.00        0.02
+(Free)E + p*V (eV/cell)   -59326.3696
+Target enthalpy (eV/cell)   -59549.4184
+
+cgvc: Finished line minimization    3.  Mean atomic displacement =    0.0044
+
+                     ====================================
+                        Begin CG opt. move =     12
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 12
+  <sparsity:sparsity for geom step 12
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59759, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59759, refcount: 1>
+refcount: 1>
+new_DM -- step:    13
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 12
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59759, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59759 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.518341   -59549.452093   -59549.452093  0.000557 -3.824185  0.053088
+   scf:    2   -59549.379544   -59549.429883   -59549.429883  0.002766 -3.826230  0.228743
+   scf:    3   -59549.456650   -59549.453150   -59549.453150  0.002273 -3.824361  0.005532
+   scf:    4   -59549.453179   -59549.453170   -59549.453170  0.000075 -3.824379  0.000885
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000749150
+max |H_out - H_in|      (eV) :     0.0008848940
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     230
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4253
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000005    0.000003   -0.008142
+----------------------------------------
+   Max    0.045469
+   Res    0.017272    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.045469    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.84      -25.85       -4.49        0.00        0.00        0.01
+(Free)E + p*V (eV/cell)   -59326.4626
+Target enthalpy (eV/cell)   -59549.4253
+
+                     ====================================
+                        Begin CG opt. move =     13
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 13
+  <sparsity:sparsity for geom step 13
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59774, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59774, refcount: 1>
+refcount: 1>
+new_DM -- step:    14
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 13
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59774, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59774 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     122     232
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.572046   -59549.471921   -59549.471921  0.012167 -3.830648  0.080706
+   scf:    2   -59549.291780   -59549.416695   -59549.416695  0.004155 -3.834595  0.353557
+   scf:    3   -59549.483203   -59549.474467   -59549.474467  0.003419 -3.830886  0.007787
+   scf:    4   -59549.474521   -59549.474504   -59549.474504  0.000106 -3.830879  0.001047
+   scf:    5   -59549.474513   -59549.474510   -59549.474510  0.000025 -3.830912  0.000519
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000252388
+max |H_out - H_in|      (eV) :     0.0005191976
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     122     232
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4301
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000001   -0.000000   -0.001071
+----------------------------------------
+   Max    0.078962
+   Res    0.022557    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.078962    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.86      -25.85       -4.44        0.00       -0.00       -0.01
+(Free)E + p*V (eV/cell)   -59326.6068
+Target enthalpy (eV/cell)   -59549.4301
+
+                     ====================================
+                        Begin CG opt. move =     14
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 14
+  <sparsity:sparsity for geom step 14
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59819, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59819, refcount: 1>
+refcount: 1>
+new_DM -- step:    15
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 14
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59819, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59819 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     123     231
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.630404   -59549.485736   -59549.485736  0.012203 -3.838570  0.130987
+   scf:    2   -59549.029642   -59549.346026   -59549.346026  0.006843 -3.847342  0.568138
+   scf:    3   -59549.514351   -59549.492300   -59549.492300  0.005625 -3.839005  0.013230
+   scf:    4   -59549.492467   -59549.492414   -59549.492414  0.000186 -3.838978  0.001853
+   scf:    5   -59549.492441   -59549.492430   -59549.492430  0.000050 -3.839022  0.000859
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000495948
+max |H_out - H_in|      (eV) :     0.0008591898
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     123     231
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4216
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000007    0.000004    0.017572
+----------------------------------------
+   Max    0.188947
+   Res    0.048303    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.188947    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.89      -25.84       -4.36        0.00        0.00       -0.04
+(Free)E + p*V (eV/cell)   -59326.7771
+Target enthalpy (eV/cell)   -59549.4216
+
+                     ====================================
+                        Begin CG opt. move =     15
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 15
+  <sparsity:sparsity for geom step 15
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59774, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59774, refcount: 1>
+refcount: 1>
+new_DM -- step:    16
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 15
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59774, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59774 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     122     232
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.202270   -59549.358375   -59549.358375  0.001835 -3.832619  0.121714
+   scf:    2   -59548.937902   -59549.229355   -59549.229355  0.006283 -3.834567  0.534387
+   scf:    3   -59549.384358   -59549.364231   -59549.364231  0.005169 -3.832071  0.012307
+   scf:    4   -59549.364389   -59549.364337   -59549.364337  0.000172 -3.832095  0.001743
+   scf:    5   -59549.364366   -59549.364355   -59549.364355  0.000047 -3.832036  0.000908
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000470266
+max |H_out - H_in|      (eV) :     0.0009077359
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     122     232
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4301
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000001    0.000004    0.001600
+----------------------------------------
+   Max    0.088164
+   Res    0.024262    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.088164    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.86      -25.84       -4.43       -0.00       -0.00       -0.01
+(Free)E + p*V (eV/cell)   -59326.6207
+Target enthalpy (eV/cell)   -59549.4301
+
+cgvc: Finished line minimization    4.  Mean atomic displacement =    0.0123
+
+                     ====================================
+                        Begin CG opt. move =     16
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 16
+  <sparsity:sparsity for geom step 16
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59804, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59804, refcount: 1>
+refcount: 1>
+new_DM -- step:    17
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 16
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59804, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59804 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     123     232
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.677922   -59549.515850   -59549.515850  0.012310 -3.856166  0.088568
+   scf:    2   -59549.168057   -59549.408824   -59549.408824  0.003946 -3.863404  0.517173
+   scf:    3   -59549.535979   -59549.520514   -59549.520514  0.003262 -3.856375  0.010167
+   scf:    4   -59549.520861   -59549.520739   -59549.520739  0.000207 -3.856297  0.003119
+   scf:    5   -59549.520777   -59549.520762   -59549.520762  0.000068 -3.856374  0.001348
+   scf:    6   -59549.520773   -59549.520768   -59549.520768  0.000031 -3.856617  0.000524
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000310872
+max |H_out - H_in|      (eV) :     0.0005235532
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     123     232
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4434
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000024    0.000010    0.015920
+----------------------------------------
+   Max    0.103984
+   Res    0.029956    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.103984    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.85      -25.88       -4.36       -0.00        0.00        0.02
+(Free)E + p*V (eV/cell)   -59326.8556
+Target enthalpy (eV/cell)   -59549.4434
+
+                     ====================================
+                        Begin CG opt. move =     17
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 17
+  <sparsity:sparsity for geom step 17
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59538, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59538, refcount: 1>
+refcount: 1>
+new_DM -- step:    18
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 17
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59538, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59538 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     228
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.751019   -59549.534807   -59549.534807  0.012469 -3.893625  0.145304
+   scf:    2   -59548.601371   -59549.247374   -59549.247374  0.006350 -3.910813  0.850088
+   scf:    3   -59549.588848   -59549.547137   -59549.547137  0.005251 -3.894062  0.016214
+   scf:    4   -59549.548014   -59549.547705   -59549.547705  0.000325 -3.893897  0.004871
+   scf:    5   -59549.547801   -59549.547763   -59549.547763  0.000111 -3.893984  0.002177
+   scf:    6   -59549.547790   -59549.547779   -59549.547779  0.000045 -3.894327  0.001232
+   scf:    7   -59549.547780   -59549.547780   -59549.547780  0.000013 -3.894421  0.001098
+   scf:    8   -59549.547781   -59549.547781   -59549.547781  0.000010 -3.894477  0.000359
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000096363
+max |H_out - H_in|      (eV) :     0.0003594484
+SCF cycle converged after 8 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     121     228
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4250
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000002   -0.000014    0.019816
+----------------------------------------
+   Max    0.287042
+   Res    0.082886    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.287042    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.84      -25.94       -4.24        0.00        0.00        0.07
+(Free)E + p*V (eV/cell)   -59327.0985
+Target enthalpy (eV/cell)   -59549.4250
+
+                     ====================================
+                        Begin CG opt. move =     18
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 18
+  <sparsity:sparsity for geom step 18
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59804, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59804, refcount: 1>
+refcount: 1>
+new_DM -- step:    19
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 18
+    nrows_g=3276 nrows=63 sparsity=.0056 nnzs=59804, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59804 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     123     231
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.093165   -59549.325279   -59549.325279  0.012258 -3.862380  0.131286
+   scf:    2   -59548.573511   -59549.093634   -59549.093634  0.005621 -3.870809  0.776118
+   scf:    3   -59549.368631   -59549.335068   -59549.335068  0.004646 -3.861628  0.014338
+   scf:    4   -59549.335755   -59549.335514   -59549.335514  0.000287 -3.861796  0.004229
+   scf:    5   -59549.335589   -59549.335559   -59549.335559  0.000095 -3.861716  0.001925
+   scf:    6   -59549.335581   -59549.335572   -59549.335572  0.000044 -3.861398  0.000504
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000441296
+max |H_out - H_in|      (eV) :     0.0005041996
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     123     231
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4438
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000   -0.000000    0.017370
+----------------------------------------
+   Max    0.125917
+   Res    0.035525    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.125917    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.85      -25.89       -4.34       -0.00        0.00        0.03
+(Free)E + p*V (eV/cell)   -59326.8757
+Target enthalpy (eV/cell)   -59549.4438
+
+cgvc: Finished line minimization    5.  Mean atomic displacement =    0.0146
+
+                     ====================================
+                        Begin CG opt. move =     19
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 19
+  <sparsity:sparsity for geom step 19
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59448, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59448, refcount: 1>
+refcount: 1>
+new_DM -- step:    20
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 19
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59448, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59448 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     120     228
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.723397   -59549.547120   -59549.547120  0.001408 -3.886317  0.120424
+   scf:    2   -59549.083960   -59549.403431   -59549.403431  0.003967 -3.895811  0.749188
+   scf:    3   -59549.573148   -59549.552242   -59549.552242  0.003295 -3.886491  0.010535
+   scf:    4   -59549.552484   -59549.552407   -59549.552407  0.000209 -3.886333  0.002039
+   scf:    5   -59549.552430   -59549.552420   -59549.552420  0.000039 -3.886483  0.001083
+   scf:    6   -59549.552426   -59549.552423   -59549.552423  0.000019 -3.886720  0.000855
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000187805
+max |H_out - H_in|      (eV) :     0.0008548670
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     120     228
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4614
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000017    0.000002    0.016499
+----------------------------------------
+   Max    0.075902
+   Res    0.022136    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.075902    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.88      -25.88       -4.26       -0.00        0.00        0.01
+(Free)E + p*V (eV/cell)   -59327.1190
+Target enthalpy (eV/cell)   -59549.4614
+
+                     ====================================
+                        Begin CG opt. move =     20
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 20
+  <sparsity:sparsity for geom step 20
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59279, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59279, refcount: 1>
+refcount: 1>
+new_DM -- step:    21
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 20
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59279, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59279 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     228
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.815437   -59549.580569   -59549.580569  0.002251 -3.924895  0.198873
+   scf:    2   -59548.325859   -59549.191151   -59549.191151  0.006475 -3.947093  1.228253
+   scf:    3   -59549.651110   -59549.594286   -59549.594286  0.005382 -3.925243  0.016537
+   scf:    4   -59549.594901   -59549.594703   -59549.594703  0.000326 -3.924923  0.003275
+   scf:    5   -59549.594761   -59549.594736   -59549.594736  0.000060 -3.925136  0.001867
+   scf:    6   -59549.594749   -59549.594744   -59549.594744  0.000030 -3.925506  0.002266
+   scf:    7   -59549.594740   -59549.594744   -59549.594744  0.000029 -3.925619  0.002657
+   scf:    8   -59549.594747   -59549.594746   -59549.594746  0.000012 -3.925663  0.000138
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000117369
+max |H_out - H_in|      (eV) :     0.0001381510
+SCF cycle converged after 8 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     228
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4505
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000002    0.000007    0.026236
+----------------------------------------
+   Max    0.198191
+   Res    0.060355    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.198191    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.92      -25.88       -4.13        0.00        0.00       -0.03
+(Free)E + p*V (eV/cell)   -59327.4796
+Target enthalpy (eV/cell)   -59549.4505
+
+                     ====================================
+                        Begin CG opt. move =     21
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 21
+  <sparsity:sparsity for geom step 21
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59430, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59430, refcount: 1>
+refcount: 1>
+new_DM -- step:    22
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 21
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59430, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59430 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     120     228
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.151200   -59549.350542   -59549.350542  0.001635 -3.898774  0.153522
+   scf:    2   -59548.634212   -59549.128136   -59549.128136  0.004671 -3.908001  0.944789
+   scf:    3   -59549.390766   -59549.358292   -59549.358292  0.003883 -3.898023  0.012516
+   scf:    4   -59549.358626   -59549.358519   -59549.358519  0.000244 -3.898284  0.002262
+   scf:    5   -59549.358550   -59549.358536   -59549.358536  0.000042 -3.898124  0.001159
+   scf:    6   -59549.358545   -59549.358541   -59549.358541  0.000021 -3.897888  0.000556
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000214960
+max |H_out - H_in|      (eV) :     0.0005564505
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     120     228
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4632
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001    0.000036    0.019205
+----------------------------------------
+   Max    0.099804
+   Res    0.028663    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.099804    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.89      -25.88       -4.22        0.00        0.00       -0.00
+(Free)E + p*V (eV/cell)   -59327.2091
+Target enthalpy (eV/cell)   -59549.4632
+
+cgvc: Finished line minimization    6.  Mean atomic displacement =    0.0210
+
+                     ====================================
+                        Begin CG opt. move =     22
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 22
+  <sparsity:sparsity for geom step 22
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59279, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59279, refcount: 1>
+refcount: 1>
+new_DM -- step:    23
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 22
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59279, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59279 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.780412   -59549.580107   -59549.580107  0.001943 -3.930748  0.254393
+   scf:    2   -59548.544244   -59549.263501   -59549.263501  0.009040 -3.945283  1.363545
+   scf:    3   -59549.642690   -59549.595982   -59549.595982  0.007614 -3.930931  0.020043
+   scf:    4   -59549.597146   -59549.596748   -59549.596748  0.000384 -3.930687  0.007106
+   scf:    5   -59549.596852   -59549.596813   -59549.596813  0.000151 -3.930804  0.001942
+   scf:    6   -59549.596841   -59549.596830   -59549.596830  0.000052 -3.931206  0.001620
+   scf:    7   -59549.596830   -59549.596831   -59549.596831  0.000027 -3.931311  0.002276
+   scf:    8   -59549.596832   -59549.596832   -59549.596832  0.000008 -3.931353  0.000613
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000079572
+max |H_out - H_in|      (eV) :     0.0006131424
+SCF cycle converged after 8 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4689
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000005    0.000005    0.022928
+----------------------------------------
+   Max    0.145295
+   Res    0.043491    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.145295    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.89      -25.90       -4.11        0.00        0.00        0.00
+(Free)E + p*V (eV/cell)   -59327.6167
+Target enthalpy (eV/cell)   -59549.4689
+
+                     ====================================
+                        Begin CG opt. move =     23
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 23
+  <sparsity:sparsity for geom step 23
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59340, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59340, refcount: 1>
+refcount: 1>
+new_DM -- step:    24
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 23
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59340, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59340 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     120     228
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.323796   -59549.419224   -59549.419224  0.001073 -3.918150  0.111298
+   scf:    2   -59549.224616   -59549.359609   -59549.359609  0.003957 -3.918992  0.597940
+   scf:    3   -59549.430877   -59549.422076   -59549.422076  0.003337 -3.917887  0.008338
+   scf:    4   -59549.422271   -59549.422205   -59549.422205  0.000156 -3.918005  0.002896
+   scf:    5   -59549.422222   -59549.422216   -59549.422216  0.000062 -3.917965  0.000768
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000618588
+max |H_out - H_in|      (eV) :     0.0007676923
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     120     228
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4738
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000003   -0.000001    0.027049
+----------------------------------------
+   Max    0.061125
+   Res    0.023331    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.061125    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.89      -25.89       -4.16       -0.00        0.00        0.00
+(Free)E + p*V (eV/cell)   -59327.4721
+Target enthalpy (eV/cell)   -59549.4738
+
+cgvc: Finished line minimization    7.  Mean atomic displacement =    0.0125
+
+                     ====================================
+                        Begin CG opt. move =     24
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 24
+  <sparsity:sparsity for geom step 24
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59278, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59278, refcount: 1>
+refcount: 1>
+new_DM -- step:    25
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 24
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59278, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59278 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.658084   -59549.544721   -59549.544721  0.001361 -3.952158  0.151959
+   scf:    2   -59549.199227   -59549.441456   -59549.441456  0.006429 -3.954057  0.728499
+   scf:    3   -59549.569796   -59549.552237   -59549.552237  0.005295 -3.951911  0.013544
+   scf:    4   -59549.552673   -59549.552513   -59549.552513  0.000220 -3.951769  0.004763
+   scf:    5   -59549.552587   -59549.552559   -59549.552559  0.000088 -3.951833  0.001495
+   scf:    6   -59549.552579   -59549.552571   -59549.552571  0.000034 -3.952044  0.000653
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000340162
+max |H_out - H_in|      (eV) :     0.0006533050
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4782
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000   -0.000022    0.024307
+----------------------------------------
+   Max    0.125747
+   Res    0.032039    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.125747    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.88      -25.91       -4.09       -0.00        0.00        0.02
+(Free)E + p*V (eV/cell)   -59327.6826
+Target enthalpy (eV/cell)   -59549.4782
+
+                     ====================================
+                        Begin CG opt. move =     25
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 25
+  <sparsity:sparsity for geom step 25
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59279, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59279, refcount: 1>
+refcount: 1>
+new_DM -- step:    26
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 25
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59279, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59279 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.404973   -59549.452386   -59549.452386  0.000583 -3.939832  0.055242
+   scf:    2   -59549.407051   -59549.438842   -59549.438842  0.002372 -3.940085  0.263547
+   scf:    3   -59549.455690   -59549.453378   -59549.453378  0.001953 -3.939866  0.004856
+   scf:    4   -59549.453435   -59549.453414   -59549.453414  0.000079 -3.939907  0.001774
+   scf:    5   -59549.453424   -59549.453420   -59549.453420  0.000032 -3.939878  0.000569
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000319832
+max |H_out - H_in|      (eV) :     0.0005692217
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4803
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000    0.000002    0.024445
+----------------------------------------
+   Max    0.063542
+   Res    0.018814    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.063542    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.89      -25.90       -4.11        0.00        0.00        0.01
+(Free)E + p*V (eV/cell)   -59327.6097
+Target enthalpy (eV/cell)   -59549.4803
+
+cgvc: Finished line minimization    8.  Mean atomic displacement =    0.0080
+
+                     ====================================
+                        Begin CG opt. move =     26
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 26
+  <sparsity:sparsity for geom step 26
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    27
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 26
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.606854   -59549.530622   -59549.530622  0.000869 -3.954715  0.078822
+   scf:    2   -59549.438183   -59549.503211   -59549.503211  0.003659 -3.954158  0.356280
+   scf:    3   -59549.538074   -59549.532850   -59549.532850  0.002972 -3.954451  0.006377
+   scf:    4   -59549.532943   -59549.532907   -59549.532907  0.000096 -3.954389  0.002255
+   scf:    5   -59549.532922   -59549.532917   -59549.532917  0.000059 -3.954426  0.000741
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000589856
+max |H_out - H_in|      (eV) :     0.0007413273
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4873
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000009    0.000004    0.016701
+----------------------------------------
+   Max    0.041118
+   Res    0.012503    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.041118    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.90      -25.89       -4.08        0.00        0.00       -0.01
+(Free)E + p*V (eV/cell)   -59327.7444
+Target enthalpy (eV/cell)   -59549.4873
+
+                     ====================================
+                        Begin CG opt. move =     27
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 27
+  <sparsity:sparsity for geom step 27
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59209, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59209, refcount: 1>
+refcount: 1>
+new_DM -- step:    28
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 27
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59209, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59209 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.647005   -59549.542218   -59549.542218  0.001389 -3.977263  0.125561
+   scf:    2   -59549.309584   -59549.473282   -59549.473282  0.005869 -3.976787  0.561121
+   scf:    3   -59549.561128   -59549.547875   -59549.547875  0.004757 -3.976850  0.009766
+   scf:    4   -59549.548102   -59549.548014   -59549.548014  0.000147 -3.976742  0.003466
+   scf:    5   -59549.548051   -59549.548038   -59549.548038  0.000092 -3.976783  0.001077
+   scf:    6   -59549.548046   -59549.548043   -59549.548043  0.000021 -3.976930  0.000524
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000212284
+max |H_out - H_in|      (eV) :     0.0005236971
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4753
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000019    0.000008    0.014664
+----------------------------------------
+   Max    0.115645
+   Res    0.040707    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.115645    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.93      -25.87       -4.02       -0.00        0.00       -0.05
+(Free)E + p*V (eV/cell)   -59327.9340
+Target enthalpy (eV/cell)   -59549.4753
+
+                     ====================================
+                        Begin CG opt. move =     28
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 28
+  <sparsity:sparsity for geom step 28
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    29
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 28
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.298505   -59549.415288   -59549.415288  0.001279 -3.956357  0.120326
+   scf:    2   -59549.207555   -59549.353606   -59549.353606  0.005565 -3.958514  0.544865
+   scf:    3   -59549.431824   -59549.420207   -59549.420207  0.004528 -3.956664  0.009638
+   scf:    4   -59549.420415   -59549.420335   -59549.420335  0.000141 -3.956763  0.003379
+   scf:    5   -59549.420371   -59549.420358   -59549.420358  0.000088 -3.956711  0.001128
+   scf:    6   -59549.420366   -59549.420362   -59549.420362  0.000024 -3.956546  0.000462
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000238424
+max |H_out - H_in|      (eV) :     0.0004618144
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     227
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4874
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000004   -0.000001    0.016529
+----------------------------------------
+   Max    0.044634
+   Res    0.014049    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.044634    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.91      -25.89       -4.07       -0.00       -0.00       -0.01
+(Free)E + p*V (eV/cell)   -59327.7599
+Target enthalpy (eV/cell)   -59549.4874
+
+cgvc: Finished line minimization    9.  Mean atomic displacement =    0.0090
+
+                     ====================================
+                        Begin CG opt. move =     29
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 29
+  <sparsity:sparsity for geom step 29
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59214, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59214, refcount: 1>
+refcount: 1>
+new_DM -- step:    30
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 29
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59214, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59214 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.585486   -59549.522211   -59549.522211  0.001710 -3.984439  0.070461
+   scf:    2   -59549.403109   -59549.488480   -59549.488480  0.005173 -3.982568  0.318652
+   scf:    3   -59549.532716   -59549.526859   -59549.526859  0.004032 -3.983964  0.012651
+   scf:    4   -59549.527314   -59549.527158   -59549.527158  0.000348 -3.983950  0.003278
+   scf:    5   -59549.527202   -59549.527185   -59549.527185  0.000095 -3.983998  0.001717
+   scf:    6   -59549.527202   -59549.527194   -59549.527194  0.000031 -3.984126  0.000536
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000313856
+max |H_out - H_in|      (eV) :     0.0005355696
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4794
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000023   -0.000017    0.015353
+----------------------------------------
+   Max    0.166994
+   Res    0.045190    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.166994    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.83      -25.97       -4.04       -0.00       -0.00        0.10
+(Free)E + p*V (eV/cell)   -59327.8612
+Target enthalpy (eV/cell)   -59549.4794
+
+                     ====================================
+                        Begin CG opt. move =     30
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 30
+  <sparsity:sparsity for geom step 30
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    31
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 30
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.398996   -59549.454182   -59549.454182  0.001169 -3.965871  0.048740
+   scf:    2   -59549.397018   -59549.437946   -59549.437946  0.003509 -3.968046  0.220678
+   scf:    3   -59549.459156   -59549.456359   -59549.456359  0.002743 -3.966209  0.008614
+   scf:    4   -59549.456573   -59549.456500   -59549.456500  0.000234 -3.966228  0.002215
+   scf:    5   -59549.456522   -59549.456513   -59549.456513  0.000064 -3.966198  0.001241
+   scf:    6   -59549.456522   -59549.456518   -59549.456518  0.000023 -3.966110  0.000374
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000231169
+max |H_out - H_in|      (eV) :     0.0003740685
+SCF cycle converged after 6 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4895
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000004    0.000025    0.015863
+----------------------------------------
+   Max    0.030863
+   Res    0.010339    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.030863    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.88      -25.91       -4.06        0.00        0.00        0.02
+(Free)E + p*V (eV/cell)   -59327.7962
+Target enthalpy (eV/cell)   -59549.4895
+
+cgvc: Finished line minimization   10.  Mean atomic displacement =    0.0028
+
+                     ====================================
+                        Begin CG opt. move =     31
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 31
+  <sparsity:sparsity for geom step 31
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    32
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 31
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.520596   -59549.502660   -59549.502660  0.000591 -3.967696  0.066860
+   scf:    2   -59549.442694   -59549.484746   -59549.484746  0.003102 -3.967111  0.301536
+   scf:    3   -59549.507263   -59549.503964   -59549.503964  0.002526 -3.967541  0.003947
+   scf:    4   -59549.504007   -59549.503991   -59549.503991  0.000065 -3.967556  0.001419
+   scf:    5   -59549.503999   -59549.503996   -59549.503996  0.000033 -3.967565  0.000500
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000331661
+max |H_out - H_in|      (eV) :     0.0005004658
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4908
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000014    0.000004    0.015451
+----------------------------------------
+   Max    0.031261
+   Res    0.010256    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.031261    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.91      -25.88       -4.05       -0.00       -0.00       -0.02
+(Free)E + p*V (eV/cell)   -59327.8351
+Target enthalpy (eV/cell)   -59549.4908
+
+                     ====================================
+                        Begin CG opt. move =     32
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 32
+  <sparsity:sparsity for geom step 32
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    33
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 32
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.482876   -59549.487752   -59549.487752  0.000124 -3.967691  0.014767
+   scf:    2   -59549.484683   -59549.486835   -59549.486835  0.000671 -3.967934  0.067333
+   scf:    3   -59549.487988   -59549.487819   -59549.487819  0.000547 -3.967726  0.000923
+   scf:    4   -59549.487822   -59549.487821   -59549.487821  0.000015 -3.967722  0.000335
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000147310
+max |H_out - H_in|      (eV) :     0.0003354964
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4909
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000000   -0.000000    0.015214
+----------------------------------------
+   Max    0.024428
+   Res    0.007668    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.024428    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.91      -25.89       -4.05        0.00       -0.00       -0.01
+(Free)E + p*V (eV/cell)   -59327.8290
+Target enthalpy (eV/cell)   -59549.4909
+
+cgvc: Finished line minimization   11.  Mean atomic displacement =    0.0021
+
+                     ====================================
+                        Begin CG opt. move =     33
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 33
+  <sparsity:sparsity for geom step 33
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59217, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59217, refcount: 1>
+refcount: 1>
+new_DM -- step:    34
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 33
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59217, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59217 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.505470   -59549.497392   -59549.497392  0.000614 -3.971259  0.079287
+   scf:    2   -59549.412536   -59549.471918   -59549.471918  0.003607 -3.970575  0.371707
+   scf:    3   -59549.503456   -59549.499122   -59549.499122  0.002958 -3.971038  0.005920
+   scf:    4   -59549.499210   -59549.499177   -59549.499177  0.000134 -3.971051  0.002292
+   scf:    5   -59549.499190   -59549.499186   -59549.499186  0.000076 -3.971051  0.000435
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000755758
+max |H_out - H_in|      (eV) :     0.0004352700
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4908
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000002   -0.000001    0.016663
+----------------------------------------
+   Max    0.035962
+   Res    0.011091    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.035962    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.88      -25.92       -4.05       -0.00        0.00        0.03
+(Free)E + p*V (eV/cell)   -59327.8493
+Target enthalpy (eV/cell)   -59549.4908
+
+                     ====================================
+                        Begin CG opt. move =     34
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 34
+  <sparsity:sparsity for geom step 34
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    35
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 34
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.479596   -59549.486717   -59549.486717  0.001148 -3.969771  0.040581
+   scf:    2   -59549.464313   -59549.479994   -59549.479994  0.001838 -3.970608  0.190403
+   scf:    3   -59549.488323   -59549.487176   -59549.487176  0.001507 -3.969865  0.003078
+   scf:    4   -59549.487200   -59549.487191   -59549.487191  0.000070 -3.969856  0.001208
+   scf:    5   -59549.487195   -59549.487194   -59549.487194  0.000041 -3.969854  0.000255
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000411044
+max |H_out - H_in|      (eV) :     0.0002547958
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4915
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000001    0.000002    0.015066
+----------------------------------------
+   Max    0.010968
+   Res    0.003817    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.010968    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.89      -25.90       -4.05       -0.00        0.00        0.01
+(Free)E + p*V (eV/cell)   -59327.8415
+Target enthalpy (eV/cell)   -59549.4915
+
+cgvc: Finished line minimization   12.  Mean atomic displacement =    0.0010
+
+                     ====================================
+                        Begin CG opt. move =     35
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 35
+  <sparsity:sparsity for geom step 35
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59217, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59217, refcount: 1>
+refcount: 1>
+new_DM -- step:    36
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 35
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59217, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59217 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.493492   -59549.492520   -59549.492520  0.000341 -3.971273  0.039063
+   scf:    2   -59549.457970   -59549.482050   -59549.482050  0.001362 -3.970226  0.220159
+   scf:    3   -59549.494731   -59549.493135   -59549.493135  0.001091 -3.971047  0.004807
+   scf:    4   -59549.493179   -59549.493164   -59549.493164  0.000091 -3.971054  0.001042
+   scf:    5   -59549.493169   -59549.493167   -59549.493167  0.000033 -3.971054  0.000442
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000330725
+max |H_out - H_in|      (eV) :     0.0004418150
+SCF cycle converged after 5 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4912
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot    0.000007    0.000002    0.015306
+----------------------------------------
+   Max    0.036106
+   Res    0.011529    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.036106    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.91      -25.88       -4.05        0.00        0.00       -0.02
+(Free)E + p*V (eV/cell)   -59327.8461
+Target enthalpy (eV/cell)   -59549.4912
+
+                     ====================================
+                        Begin CG opt. move =     36
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 36
+  <sparsity:sparsity for geom step 36
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    37
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 36
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.488037   -59549.490124   -59549.490124  0.001148 -3.970670  0.025876
+   scf:    2   -59549.475987   -59549.485839   -59549.485839  0.000859 -3.971788  0.143924
+   scf:    3   -59549.491026   -59549.490375   -59549.490375  0.000726 -3.970810  0.003016
+   scf:    4   -59549.490394   -59549.490388   -59549.490388  0.000059 -3.970807  0.000723
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000592470
+max |H_out - H_in|      (eV) :     0.0007230659
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4917
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001   -0.000001    0.015118
+----------------------------------------
+   Max    0.012332
+   Res    0.003543    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.012332    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.90      -25.90       -4.05        0.00       -0.00       -0.00
+(Free)E + p*V (eV/cell)   -59327.8438
+Target enthalpy (eV/cell)   -59549.4917
+
+cgvc: Finished line minimization   13.  Mean atomic displacement =    0.0004
+
+                     ====================================
+                        Begin CG opt. move =     37
+                     ====================================
+
+outcell: Unit cell vectors (Ang):
+       23.434647   -1.230000    0.000000
+       12.782535   19.680000    0.000000
+        0.000000    0.000000   40.000000
+
+outcell: Cell vector modules (Ang)   :   23.466904   23.466904   40.000000
+outcell: Cell angles (23,13,12) (deg):     90.0000     90.0000     60.0000
+outcell: Cell volume (Ang**3)        :  19076.6552
+<dSpData1D:S at geom step 37
+  <sparsity:sparsity for geom step 37
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 7>
+  <dData1D:(new from dSpData1D) n=59227, refcount: 1>
+refcount: 1>
+new_DM -- step:    38
+Re-using DM from previous geometries...
+Number of DMs in history: 1
+ DM extrapolation coefficients: 
+1   1.00000
+New DM after history re-use:
+<dSpData2D:SpM extrapolated using coords
+  <sparsity:sparsity for geom step 37
+    nrows_g=3276 nrows=63 sparsity=.0055 nnzs=59227, refcount: 9>
+  <dData2D:(temp array for extrapolation) n=59227 m=1, refcount: 1>
+refcount: 1>
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+
+InitMesh: MESH = 216 x 216 x 432 = 20155392
+InitMesh: Mesh cutoff (required, used) =   300.000   312.203 Ry
+New grid distribution [1]: sub = 2
+New grid distribution [2]: sub = 2
+New grid distribution [3]: sub = 2
+Setting up quadratic distribution...
+
+        iscf     Eharris(eV)        E_KS(eV)     FreeEng(eV)     dDmax    Ef(eV) dHmax(eV)
+   scf:    1   -59549.492160   -59549.492062   -59549.492062  0.000100 -3.971173  0.012736
+   scf:    2   -59549.487322   -59549.490610   -59549.490610  0.000554 -3.970511  0.068684
+   scf:    3   -59549.492347   -59549.492131   -59549.492131  0.000460 -3.971061  0.001442
+   scf:    4   -59549.492135   -59549.492134   -59549.492134  0.000028 -3.971058  0.000213
+
+SCF Convergence by DM+H criterion
+max |DM_out - DM_in|         :     0.0000278359
+max |H_out - H_in|      (eV) :     0.0002129710
+SCF cycle converged after 4 iterations
+
+Using DM_out to compute the final energy and forces
+No. of atoms with KB's overlaping orbs in proc 0. Max # of overlaps:     119     226
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+
+siesta: E_KS(eV) =           -59549.4918
+
+siesta: Atomic forces (eV/Ang):
+----------------------------------------
+   Tot   -0.000001   -0.000001    0.015298
+----------------------------------------
+   Max    0.006823
+   Res    0.002429    sqrt( Sum f_i^2 / 3N )
+----------------------------------------
+   Max    0.006823    constrained
+
+Stress tensor Voigt[x,y,z,yz,xz,xy] (kbar):      -25.90      -25.90       -4.05        0.00        0.00        0.00
+(Free)E + p*V (eV/cell)   -59327.8466
+Target enthalpy (eV/cell)   -59549.4918
+
+outcoor: Relaxed atomic coordinates (Ang):                  
+    1.42051388    0.00155407   18.16509770   1       1  C
+    5.68148260    0.00383970   18.21446443   1       2  C
+    9.94198139    0.00187519   18.26599613   1       3  C
+   14.20208917   -0.00184333   18.26111531   1       4  C
+   18.46233008   -0.00334992   18.20614215   1       5  C
+   22.72304423   -0.00058011   18.16509785   1       6  C
+    3.55005135    1.23325036   18.18735185   1       7  C
+    7.81114154    1.23337347   18.24643082   1       8  C
+   12.07149715    1.22993286   18.27413981   1       9  C
+   16.33158957    1.22704644   18.24134596   1      10  C
+   20.59159652    1.22780542   18.18735183   1      11  C
+   24.85282188    1.23165422   18.17661630   1      12  C
+    5.67998267    2.46371614   18.22242728   1      13  C
+    9.94098028    2.46188432   18.27104638   1      14  C
+   14.20126949    2.45829990   18.26909890   1      15  C
+   18.46101598    2.45714733   18.22242692   1      16  C
+   22.72120521    2.45975093   18.18733436   1      17  C
+    3.54847140    3.69282652   18.20614241   1      18  C
+    7.81049904    3.69299628   18.25670717   1      19  C
+   12.07127914    3.69003255   18.28182840   1      20  C
+   16.33116960    3.68758894   18.25670748   1      21  C
+   20.59058171    3.68838547   18.21446524   1      22  C
+   24.85143045    3.69127427   18.20627032   1      23  C
+    5.67939717    4.92290506   18.24134705   1      24  C
+    9.94119540    4.92158036   18.27941388   1      25  C
+   14.20183837    4.91853374   18.27941569   1      26  C
+   18.46094519    4.91795625   18.24643161   1      27  C
+   22.72061795    4.91997116   18.22238303   1      28  C
+   26.98263752    4.92187023   18.23509954   1      29  C
+    7.81085465    6.15218833   18.26909899   1      30  C
+   12.07239579    6.14999855   18.28663345   1      31  C
+   16.33210512    6.14819542   18.27104785   1      32  C
+   20.59091105    6.14927218   18.24606097   1      33  C
+   24.85146447    6.15073781   18.24180195   1      34  C
+    5.67989767    7.38155026   18.26111678   1      35  C
+    9.94256225    7.38094851   18.28182731   1      36  C
+   14.20334716    7.37901381   18.28182884   1      37  C
+   18.46203414    7.37906730   18.26599711   1      38  C
+   22.72127538    7.38017850   18.25648911   1      39  C
+   26.98322100    7.38056401   18.26197384   1      40  C
+    7.81194292    8.61080950   18.27414130   1      41  C
+   12.07415523    8.60988200   18.27941440   1      42  C
+   16.33374707    8.60925361   18.27414064   1      43  C
+   20.59207907    8.61025252   18.26940526   1      44  C
+   24.85256141    8.61007377   18.27034798   1      45  C
+   29.11555762    8.60983608   18.27192026   1      46  C
+    9.94410161    9.83991608   18.27104592   1      47  C
+   14.20506258    9.83950635   18.26909862   1      48  C
+   18.46363106    9.84026762   18.27191941   1      49  C
+   22.72274944    9.84043635   18.27853488   1      50  C
+   26.98450489    9.83913962   18.27729598   1      51  C
+    7.81317219   11.06905196   18.26599727   1      52  C
+   12.07551803   11.06940918   18.25670677   1      53  C
+   16.33519916   11.07028865   18.26111588   1      54  C
+   20.59376570   11.07116276   18.27729724   1      55  C
+   24.85411514   11.06958801   18.28466875   1      56  C
+   29.11655782   11.06813472   18.26940617   1      57  C
+    9.94510036   12.29866540   18.24643024   1      58  C
+   14.20619990   12.30004364   18.24134632   1      59  C
+   18.46521889   12.30156305   18.26197478   1      60  C
+   22.72455926   12.30090886   18.28467004   1      61  C
+   26.98585368   12.29825656   18.27853428   1      62  C
+   31.24841354   12.29761229   18.24606112   1      63  C
+   12.07618795   13.52913183   18.22242662   1      64  C
+   16.33621923   13.53141394   18.23510030   1      65  C
+   20.59533397   13.53201200   18.27034963   1      66  C
+   24.85569260   13.52949808   18.28466890   1      67  C
+   29.11723616   13.52710767   18.25648989   1      68  C
+    9.94512209   14.75776987   18.21446422   1      69  C
+   14.20638398   14.76051854   18.20614274   1      70  C
+   18.46603618   14.76263148   18.24180244   1      71  C
+   22.72576626   14.76130358   18.27853532   1      72  C
+   26.98646998   14.75791103   18.27034818   1      73  C
+   31.24816598   14.75664395   18.22238344   1      74  C
+   12.07553891   15.98893908   18.18735183   1      75  C
+   16.33609433   15.99239289   18.20627065   1      76  C
+   20.59585802   15.99270846   18.25648918   1      77  C
+   24.85609860   15.98969342   18.27729604   1      78  C
+   29.11686848   15.98662666   18.24180240   1      79  C
+   33.37848513   15.98726219   18.18733400   1      80  C
+   14.20530591   17.22099637   18.17661635   1      81  C
+   18.46558480   17.22338005   18.22238271   1      82  C
+   22.72572960   17.22160880   18.26940517   1      83  C
+   26.98592981   17.21786872   18.26197383   1      84  C
+   31.24684301   17.21632885   18.20627066   1      85  C
+   12.07362750   18.44902069   18.16509777   1      86  C
+   16.33467669   18.45298238   18.18733385   1      87  C
+   20.59504444   18.45311104   18.24606025   1      88  C
+   24.85517940   18.44989202   18.27191878   1      89  C
+   29.11551171   18.44671136   18.23509945   1      90  C
+   33.37624208   18.44734431   18.17661613   1      91  C
+    2.84094024    0.00265564   18.17661611   1      92  C
+    7.10167062    0.00328861   18.23509944   1      93  C
+   11.36200295    0.00010794   18.27191878   1      94  C
+   15.62213791   -0.00311108   18.24606024   1      95  C
+   19.88250568   -0.00298243   18.18733386   1      96  C
+   24.14355488    0.00097929   18.16509778   1      97  C
+    4.97033939    1.23367113   18.20627065   1      98  C
+    9.23125258    1.23213127   18.26197381   1      99  C
+   13.49145280    1.22839120   18.26940518   1     100  C
+   17.75159759    1.22661995   18.22238270   1     101  C
+   22.01187647    1.22900365   18.17661637   1     102  C
+    2.83869722    2.46273783   18.18733400   1     103  C
+    7.10031387    2.46337333   18.24180238   1     104  C
+   11.36108374    2.46030656   18.27729605   1     105  C
+   15.62132432    2.45729152   18.25648918   1     106  C
+   19.88108800    2.45760709   18.20627067   1     107  C
+   24.14164340    2.46106089   18.18735183   1     108  C
+    4.96901635    3.69335601   18.22238345   1     109  C
+    9.23071237    3.69208894   18.27034817   1     110  C
+   13.49141609    3.68869640   18.27853535   1     111  C
+   17.75114618    3.68736850   18.24180244   1     112  C
+   22.01079840    3.68948140   18.20614274   1     113  C
+   26.27206031    3.69223009   18.21446424   1     114  C
+    7.09994625    4.92289230   18.25648990   1     115  C
+   11.36148978    4.92050190   18.28466891   1     116  C
+   15.62184842    4.91798799   18.27034964   1     117  C
+   19.88096314    4.91858607   18.23510032   1     118  C
+   24.14099443    4.92086820   18.22242663   1     119  C
+    4.96876881    6.15238773   18.24606114   1     120  C
+    9.23132868    6.15174343   18.27853429   1     121  C
+   13.49262309    6.14909112   18.28467005   1     122  C
+   17.75196346    6.14843693   18.26197479   1     123  C
+   22.01098244    6.14995635   18.24134633   1     124  C
+   26.27208197    6.15133456   18.24643025   1     125  C
+    7.10062451    7.38186524   18.26940621   1     126  C
+   11.36306721    7.38041197   18.28466875   1     127  C
+   15.62341664    7.37883721   18.27729723   1     128  C
+   19.88198320    7.37971131   18.26111590   1     129  C
+   24.14166434    7.38059075   18.25670678   1     130  C
+   28.40401020    7.38094799   18.26599729   1     131  C
+    9.23267749    8.61086034   18.27729599   1     132  C
+   13.49443293    8.60956363   18.27853487   1     133  C
+   17.75355131    8.60973239   18.27191940   1     134  C
+   22.01211977    8.61049367   18.26909864   1     135  C
+   26.27308076    8.61008395   18.27104591   1     136  C
+    7.10162474    9.84016393   18.27192026   1     137  C
+   11.36462095    9.83992622   18.27034798   1     138  C
+   15.62510330    9.83974748   18.26940523   1     139  C
+   19.88343529    9.84074639   18.27414066   1     140  C
+   24.14302713    9.84011799   18.27941440   1     141  C
+   28.40523942    9.83919048   18.27414127   1     142  C
+    9.23396134   11.06943596   18.26197383   1     143  C
+   13.49590697   11.06982149   18.25648909   1     144  C
+   17.75514820   11.07093267   18.26599710   1     145  C
+   22.01383520   11.07098615   18.28182884   1     146  C
+   26.27462012   11.06905144   18.28182730   1     147  C
+   30.53728471   11.06844970   18.26111675   1     148  C
+   11.36571789   12.29926215   18.24180194   1     149  C
+   15.62627130   12.30072780   18.24606095   1     150  C
+   19.88507723   12.30180456   18.27104785   1     151  C
+   24.14478656   12.30000145   18.28663344   1     152  C
+   28.40632770   12.29781167   18.26909897   1     153  C
+    9.23454484   13.52812976   18.23509953   1     154  C
+   13.49656442   13.53002883   18.22238302   1     155  C
+   17.75623719   13.53204374   18.24643159   1     156  C
+   22.01534402   13.53146625   18.27941568   1     157  C
+   26.27598698   13.52841963   18.27941388   1     158  C
+   30.53778520   13.52709491   18.24134704   1     159  C
+   11.36575191   14.75872572   18.20627031   1     160  C
+   15.62660065   14.76161451   18.21446523   1     161  C
+   19.88601275   14.76241103   18.25670748   1     162  C
+   24.14590321   14.75996742   18.28182838   1     163  C
+   28.40668332   14.75700369   18.25670718   1     164  C
+   32.66871093   14.75717346   18.20614239   1     165  C
+   13.49597713   15.99024903   18.18733435   1     166  C
+   17.75616636   15.99285264   18.22242692   1     167  C
+   22.01591285   15.99170007   18.26909889   1     168  C
+   26.27620206   15.98811566   18.27104639   1     169  C
+   30.53719968   15.98628383   18.22242729   1     170  C
+   11.36436048   17.21834576   18.17661630   1     171  C
+   15.62558587   17.22219457   18.18735182   1     172  C
+   19.88559283   17.22295356   18.24134598   1     173  C
+   24.14568525   17.22006715   18.27413981   1     174  C
+   28.40604085   17.21662653   18.24643083   1     175  C
+   32.66713104   17.21674965   18.18735185   1     176  C
+   13.49413814   18.45058011   18.16509783   1     177  C
+   17.75485226   18.45334991   18.20614216   1     178  C
+   22.01509318   18.45184329   18.26111531   1     179  C
+   26.27520094   18.44812478   18.26599615   1     180  C
+   30.53569972   18.44616028   18.21446443   1     181  C
+   34.79666843   18.44844590   18.16509771   1     182  C
+    3.66108775    0.84841915   21.83567844   1     183  C
+    7.89801462    0.40229436   21.77581602   1     184  C
+   12.13509722   -0.04045658   21.75014834   1     185  C
+   16.37238743   -0.48329355   21.78679859   1     186  C
+   20.60959113   -0.92994762   21.84685583   1     187  C
+    1.67238376    2.29654274   21.84685504   1     188  C
+    5.90898106    1.84816985   21.79965034   1     189  C
+   10.14590917    1.40396361   21.75273135   1     190  C
+   14.38309648    0.96173767   21.76002793   1     191  C
+   18.62075648    0.51719885   21.81607559   1     192  C
+   22.85851376    0.06842485   21.85895240   1     193  C
+    3.92006643    3.29535024   21.81607519   1     194  C
+    8.15638344    2.84910335   21.76562570   1     195  C
+   12.39352533    2.40611935   21.74522559   1     196  C
+   16.63121211    1.96312788   21.78012489   1     197  C
+   20.86934978    1.51638207   21.83567967   1     198  C
+    6.16705079    4.29538108   21.78012733   1     199  C
+   10.40351091    3.85075660   21.74423179   1     200  C
+   14.64115520    3.40810125   21.75208605   1     201  C
+   18.87959203    2.96323918   21.79965067   1     202  C
+   23.11793684    2.51482164   21.83566646   1     203  C
+    4.17779849    5.74274228   21.78680045   1     204  C
+    8.41346193    5.29633392   21.75208759   1     205  C
+   12.65066213    4.85283641   21.73848302   1     206  C
+   16.88905841    4.40908023   21.76562460   1     207  C
+   21.12812396    3.96217504   21.80770759   1     208  C
+   25.36567938    3.51338201   21.81621803   1     209  C
+    6.42387827    6.74300156   21.76003059   1     210  C
+   10.65988695    6.29778383   21.73848328   1     211  C
+   14.89803801    5.85432372   21.74423138   1     212  C
+   19.13724074    5.40873142   21.77581796   1     213  C
+   23.37606591    4.96100802   21.79964146   1     214  C
+    8.66953480    7.74382811   21.74522597   1     215  C
+   12.90663498    7.29937081   21.73848368   1     216  C
+   17.14582304    6.85462897   21.75273351   1     217  C
+   21.38551229    6.40781999   21.77548704   1     218  C
+   25.62304835    5.96037038   21.78060326   1     219  C
+    6.67995205    9.19092319   21.75015045   1     220  C
+   10.91563340    8.74491256   21.74423172   1     221  C
+   15.15412205    8.30004448   21.74522726   1     222  C
+   19.39404238    7.85383384   21.75598073   1     223  C
+   23.63290830    7.40728548   21.76543267   1     224  C
+   27.86910725    6.96049255   21.76082363   1     225  C
+    8.92545211   10.19139976   21.75273285   1     226  C
+   13.16256588    9.74555823   21.75208719   1     227  C
+   17.40213273    9.29952786   21.75015193   1     228  C
+   21.64189672    8.85316764   21.75132537   1     229  C
+   25.87951192    8.40748303   21.75319581   1     230  C
+   11.17174042   11.19180880   21.76562605   1     231  C
+   15.41020811   10.74525325   21.76003060   1     232  C
+   19.65013976   10.29872887   21.74810720   1     233  C
+   23.88902392    9.85346117   21.74349839   1     234  C
+   28.12526404    9.40815391   21.74810555   1     235  C
+    9.18192769   12.63896846   21.77581813   1     236  C
+   13.41892155   12.19148541   21.78012699   1     237  C
+   17.65848347   11.74439623   21.76082425   1     238  C
+   21.89779606   11.29877703   21.74111182   1     239  C
+   26.13536769   10.85465620   21.74111075   1     240  C
+   30.37065229   10.40881301   21.75597983   1     241  C
+   11.42861058   13.63858342   21.79965119   1     242  C
+   15.66699791   13.19054627   21.78680091   1     243  C
+   19.90640907   12.74394235   21.75319535   1     244  C
+   24.14478852   12.29999959   21.73674491   1     245  C
+   28.38127737   11.85584720   21.75132514   1     246  C
+   13.67636016   14.63744335   21.81607650   1     247  C
+   17.91538015   14.18960203   21.78060247   1     248  C
+   22.15390741   13.74476661   21.74349756   1     249  C
+   26.39143653   13.30176865   21.74349845   1     250  C
+   30.62720354   12.85648189   21.77548742   1     251  C
+   11.68674717   16.08519233   21.83567852   1     252  C
+   15.92491124   15.63598432   21.81621922   1     253  C
+   20.16351665   15.18965512   21.76543103   1     254  C
+   24.40120318   14.74656051   21.74111111   1     255  C
+   28.63794232   14.30305289   21.76543313   1     256  C
+   32.87388659   13.85639967   21.80770654   1     257  C
+   13.93520886   17.08339958   21.84685678   1     258  C
+   18.17339561   16.63522766   21.79964027   1     259  C
+   22.41119067   16.19098157   21.75132352   1     260  C
+   26.64844389   15.74857239   21.75319527   1     261  C
+   30.88490407   15.30376196   21.79964091   1     262  C
+   16.18400282   18.08186747   21.83566630   1     263  C
+   20.42165194   17.63569130   21.77548498   1     264  C
+   24.65896325   17.19311345   21.74810414   1     265  C
+   28.89593868   16.75002215   21.78060217   1     266  C
+   33.13242672   16.30330656   21.83566503   1     267  C
+   14.19507304   19.52973139   21.85895232   1     268  C
+   18.43235537   19.08141822   21.80770631   1     269  C
+   22.66967221   18.63734678   21.75597706   1     270  C
+   26.90677689   18.19510373   21.76082150   1     271  C
+   31.14377657   17.75062849   21.81621796   1     272  C
+   35.38077997   17.30183834   21.85895195   1     273  C
+    0.83640247    1.14816162   21.85895195   1     274  C
+    5.07340589    0.69937152   21.81621794   1     275  C
+    9.31040556    0.25489635   21.76082147   1     276  C
+   13.54751023   -0.18734667   21.75597708   1     277  C
+   17.78482704   -0.63141818   21.80770628   1     278  C
+   22.02210933   -1.07973141   21.85895232   1     279  C
+    3.08475570    2.14669345   21.83566502   1     280  C
+    7.32124375    1.69997786   21.78060215   1     281  C
+   11.55821917    1.25688658   21.74810412   1     282  C
+   15.79553046    0.81430870   21.77548495   1     283  C
+   20.03317960    0.36813248   21.83566625   1     284  C
+    5.33227828    3.14623801   21.79964089   1     285  C
+    9.56873852    2.70142759   21.75319526   1     286  C
+   13.80599179    2.25901846   21.75132355   1     287  C
+   18.04378686    1.81477235   21.79964019   1     288  C
+   22.28197360    1.36660041   21.84685679   1     289  C
+    3.34329584    4.59360028   21.80770652   1     290  C
+    7.57924011    4.14694715   21.76543315   1     291  C
+   11.81597928    3.70343963   21.74111112   1     292  C
+   16.05366577    3.26034495   21.76543102   1     293  C
+   20.29227115    2.81401570   21.81621918   1     294  C
+   24.53043520    2.36480762   21.83567854   1     295  C
+    5.58997887    5.59351812   21.77548742   1     296  C
+    9.82574588    5.14823142   21.74349849   1     297  C
+   14.06327496    4.70523344   21.74349761   1     298  C
+   18.30180223    4.26039796   21.78060243   1     299  C
+   22.54082223    3.81255659   21.81607650   1     300  C
+    7.83590501    6.59415276   21.75132517   1     301  C
+   12.07239389    6.15000045   21.73674494   1     302  C
+   16.31077336    5.70605768   21.75319536   1     303  C
+   20.55018454    5.25945373   21.78680092   1     304  C
+   24.78857186    4.81141658   21.79965119   1     305  C
+    5.84653008    8.04118695   21.75597984   1     306  C
+   10.08181473    7.59534384   21.74111078   1     307  C
+   14.31938633    7.15122309   21.74111183   1     308  C
+   18.55869897    6.70560384   21.76082425   1     309  C
+   22.79826089    6.25851469   21.78012699   1     310  C
+   27.03525469    5.81103149   21.77581813   1     311  C
+    8.09191838    9.04184610   21.74810555   1     312  C
+   12.32815850    8.59653897   21.74349842   1     313  C
+   16.56704262    8.15127117   21.74810719   1     314  C
+   20.80697429    7.70474679   21.76003061   1     315  C
+   25.04544192    7.25819124   21.76562605   1     316  C
+   10.33767043   10.04251696   21.75319581   1     317  C
+   14.57528573    9.59683236   21.75132536   1     318  C
+   18.81504971    9.15047215   21.75015193   1     319  C
+   23.05461653    8.70444176   21.75208718   1     320  C
+   27.29173029    8.25860029   21.75273285   1     321  C
+    8.34807510   11.48950742   21.76082363   1     322  C
+   12.58427409   11.04271458   21.76543268   1     323  C
+   16.82314008   10.59616619   21.75598074   1     324  C
+   21.06306040   10.14995559   21.74522726   1     325  C
+   25.30154901    9.70508747   21.74423170   1     326  C
+   29.53723032    9.25907679   21.75015044   1     327  C
+   10.59413404   12.48962965   21.78060327   1     328  C
+   14.83167016   12.04218007   21.77548703   1     329  C
+   19.07135936   11.59537112   21.75273351   1     330  C
+   23.31054742   11.15062923   21.73848365   1     331  C
+   27.54764759   10.70617187   21.74522594   1     332  C
+   12.84111649   13.48899201   21.79964146   1     333  C
+   17.07994168   13.04126860   21.77581796   1     334  C
+   21.31914438   12.59567637   21.74423135   1     335  C
+   25.55729548   12.15221625   21.73848325   1     336  C
+   29.79330413   11.70699845   21.76003057   1     337  C
+   10.85150302   14.93661794   21.81621804   1     338  C
+   15.08905846   14.48782492   21.80770759   1     339  C
+   19.32812403   14.04091979   21.76562461   1     340  C
+   23.56652028   13.59716369   21.73848298   1     341  C
+   27.80372046   13.15366608   21.75208755   1     342  C
+   32.03938390   12.70725770   21.78680046   1     343  C
+   13.09924557   15.93517834   21.83566644   1     344  C
+   17.33759040   15.48676086   21.79965074   1     345  C
+   21.57602722   15.04189878   21.75208601   1     346  C
+   25.81367152   14.59924341   21.74423177   1     347  C
+   30.05013160   14.15461890   21.78012733   1     348  C
+   15.34783263   16.93361793   21.83567970   1     349  C
+   19.58597033   16.48687218   21.78012494   1     350  C
+   23.82365710   16.04388074   21.74522559   1     351  C
+   28.06079898   15.60089670   21.76562570   1     352  C
+   32.29711597   15.15464975   21.81607521   1     353  C
+   13.35866866   18.38157512   21.85895239   1     354  C
+   17.59642596   17.93280113   21.81607567   1     355  C
+   21.83408595   17.48826234   21.76002792   1     356  C
+   26.07127325   17.04603639   21.75273138   1     357  C
+   30.30820133   16.60183013   21.79965038   1     358  C
+   34.54479866   16.15345723   21.84685503   1     359  C
+   15.60759124   19.37994759   21.84685584   1     360  C
+   19.84479498   18.93329359   21.78679860   1     361  C
+   24.08208523   18.49045664   21.75014834   1     362  C
+   28.31916785   18.04770564   21.77581605   1     363  C
+   32.55609470   17.60158084   21.83567844   1     364  C
+
+siesta: Program's energy decomposition (eV):
+siesta: Ebs     =    -19319.144476
+siesta: Eions   =    102706.861614
+siesta: Ena     =     22679.480656
+siesta: Ekin    =     41368.446338
+siesta: Enl     =     -2098.877698
+siesta: Eso     =         0.000000
+siesta: Edftu   =         0.000000
+siesta: DEna    =      2384.038465
+siesta: DUscf   =       121.248890
+siesta: DUext   =         0.000000
+siesta: Ex      =    -19415.399003
+siesta: Ec      =     -1846.095323
+siesta: Exc     =    -21261.494327
+siesta: EbV     =         0.000000
+siesta: eta*DQ  =         0.000000
+siesta: Emadel  =         0.000000
+siesta: Emeta   =         0.000000
+siesta: Emolmec =         0.000000
+siesta: Ekinion =         0.000000
+siesta: Eharris =    -59549.492135
+siesta: Etot    =    -59549.491847
+siesta: FreeEng =    -59549.491847
+
+siesta: Final energy (eV):
+siesta:  Band Struct. =  -19319.144476
+siesta:       Kinetic =   41368.446338
+siesta:       Hartree =  963138.802077
+siesta:         Edftu =       0.000000
+siesta:       Eso     =       0.000000
+siesta:    Ext. field =       0.000000
+siesta:         Exch. =  -19415.399003
+siesta:         Corr. =   -1846.095323
+siesta:     Bulk bias =       0.000000
+siesta:   Exch.-corr. =  -21261.494327
+siesta:  Ion-electron =-1963720.308164
+siesta:       Ion-ion =  920960.534786
+siesta:       Ekinion =       0.000000
+siesta: D3 dispersion =     -35.472558
+siesta:         Total =  -59549.491847
+siesta:         Fermi =      -3.971058
+
+siesta: Stress tensor (static) (eV/Ang**3):
+siesta:    -0.016163    0.000001    0.000000
+siesta:     0.000001   -0.016165   -0.000000
+siesta:     0.000000    0.000000   -0.002528
+
+siesta: Cell volume =      19076.655174 Ang**3
+
+siesta: Pressure (static):
+siesta:                Solid            Molecule  Units
+siesta:           0.00012654          0.00012633  Ry/Bohr**3
+siesta:           0.01161867          0.01159931  eV/Ang**3
+siesta:          18.61515390         18.58414441  kBar
+(Free)E+ p_basis*V_orbitals  =      -59330.128714
+(Free)Eharris+ p_basis*V_orbitals  =      -59330.129001
+
+siesta: Electric dipole (a.u.)  =   -0.000000    0.000000   -0.000155
+siesta: Electric dipole (Debye) =   -0.000000    0.000000   -0.000393
+
+cite: Please see "Graphene.bib" for an exhaustive BiBTeX file.
+cite: Please clearly indicate Siesta version in published work: 5.0.0-alpha-112-g6e4f53aee-dirty
+cite: This calculation has made use of the following articles
+cite: which are encouraged to be cited in a published work.
+        Primary SIESTA paper
+          DOI: www.doi.org/10.1088/0953-8984/14/11/302
+ 
+ 
+>> End of run:  30-NOV-2024  21:40:46
+Job completed

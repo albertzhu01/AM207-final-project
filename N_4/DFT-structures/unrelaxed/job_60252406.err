@@ -1,0 +1,6 @@
+DFT-D3: loading default parameters for functional PBE.
+System symmetry is of type slab but no DFTD3.Periodic list was found. Attempting to guess symmetry for D3.
+Could not guess the right amount of periodicity directions for D3.
+Enabling periodicity on all directions.
+mpirun: Forwarding signal 18 to job
+slurmstepd: error: *** JOB 60252406 ON holy7c02505 CANCELLED AT 2024-11-30T17:11:37 ***
